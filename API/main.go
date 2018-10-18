@@ -9,8 +9,8 @@ import (
 func main() {
 	e := echo.New()
 	type User struct {
-		Name  string `json:"name" xml:"name"`
-  	Email string `json:"email" xml:"email"`
+		Name  string `json:"name"`
+  	Email string `json:"email"`
 	}
 	e.GET("/", func(c echo.Context) error {
 		u := &User {
