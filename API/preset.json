@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Vocal Massage",
+    "low_band": {
+      "on/off": false,
+      "peak/shelf": "peak",
+      "freq_hz": 108,
+      "gain": 4.0
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "hi",
+      "freq_hz": 290,
+      "gain": -4.1
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 2.41,
+      "gain": 2.2
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 6.04,
+      "gain": 4.0
+    }
+  },
+  {
+    "name": "Kick Booster",
+    "low_band": {
+      "on/off": true,
+      "peak/shelf": "shelf",
+      "freq_hz": 112,
+      "gain": 5.4
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "hi",
+      "freq_hz": 362,
+      "gain": -4.3
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 3.24,
+      "gain": 1.9
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 8.01,
+      "gain": 6.0
+    }
+  },
+  {
+    "name": "Snare Bump",
+    "low_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_hz": 203,
+      "gain": 7.1
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_hz": 595,
+      "gain": -4.3
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 2.78,
+      "gain": 4.2
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 7.65,
+      "gain": 5.8
+    }
+  },
+  {
+    "name": "Vocal Shimmer",
+    "low_band": {
+      "on/off": false,
+      "peak/shelf": "peak",
+      "freq_hz": 203,
+      "gain": 7.1
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "hi",
+      "freq_hz": 359,
+      "gain": -3.7
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 5.63,
+      "gain": 6.2
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "shelf",
+      "freq_khz": 12.15,
+      "gain": 9.6
+    }
+  },
+  {
+    "name": "Hi-Hat Tamer",
+    "low_band": {
+      "on/off": false,
+      "peak/shelf": "peak",
+      "freq_hz": 203,
+      "gain": 7.1
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "hi",
+      "freq_hz": 824,
+      "gain": -3.6
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 6.97,
+      "gain": -2.1
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 7.60,
+      "gain": -2.9
+    }
+  },
+  {
+    "name": "Floor Tom Trainer",
+    "low_band": {
+      "on/off": false,
+      "peak/shelf": "shelf",
+      "freq_hz": 129,
+      "gain": 8.4
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_hz": 560,
+      "gain": -6.3
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 6.45,
+      "gain": 3.5
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 7.51,
+      "gain": 1.8
+    }
+  }
+]
