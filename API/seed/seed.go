@@ -1,4 +1,4 @@
-package db
+package seed
 
 import (
 	"encoding/json"
@@ -41,7 +41,7 @@ func Seed() {
 		log.Fatal(err)
 	}
 
-	presetFile, err := os.Open("db/presets.json")
+	presetFile, err := os.Open("seed/presets.json")
 	defer presetFile.Close()
 	var presets []models.Preset
 	jsonParser := json.NewDecoder(presetFile)
