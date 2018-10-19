@@ -1,23 +1,23 @@
 package main
 
 import (
-	"net/http"
-	
-	"github.com/labstack/echo"
+	"fmt"
+	// "net/http"
+	"os"
+
+	"github.com/ezg27/Tribe-EQ/API/db"
+	// "github.com/labstack/echo"
 )
 
 func main() {
-	e := echo.New()
-	type User struct {
-		Name  string `json:"name"`
-  	Email string `json:"email"`
+
+	fmt.Println("Hello there!")
+
+	seed := os.Getenv("SEED")
+	if seed == "true" {
+		db.Seed()
 	}
-	e.GET("/", func(c echo.Context) error {
-		u := &User {
-			Name:  "Jon",
-    	Email: "jon@labstack.com",
-		}
-		return c.JSON(http.StatusOK, u)
-	})
-	e.Logger.Fatal(e.Start("localhost:3001"))
+
+	fmt.Println("Bye then!")
+	// e.Logger.Fatal(e.Start("localhost:3001"))
 }
