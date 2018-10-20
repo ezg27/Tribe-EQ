@@ -4,7 +4,7 @@ import (
 	"os"
 )
 
-// GetEnv : check environment variable
+// GetEnv : check env variable
 func GetEnv(key, fallback string) string {
     if value, ok := os.LookupEnv(key); ok {
         return value
