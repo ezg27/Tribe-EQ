@@ -75,3 +75,25 @@ func CreatePreset(p models.Preset) (models.Preset, error) {
 
 	return p, err
 }
+
+// DeletePreset : remove preset from database
+func DeletePreset(id string) error {
+	db := config.DB{}
+
+	session, err := db.DoDial()
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to connect to database")
+	}
+
+	idoi := bson.ObjectIdHex(id)
+
+	defer session.Close()
+
+	c := session.DB(db.Name()).C(collection)
+
+	err = c.RemoveId(idoi)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusNotFound, "Error: Unable to delete preset from database")
+	}
+	return err
+}
