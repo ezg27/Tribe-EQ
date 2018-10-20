@@ -1,23 +1,26 @@
 package main
 
 import (
-	"fmt"
-	// "net/http"
 	"os"
-
+	"github.com/labstack/echo"
 	"github.com/ezg27/Tribe-EQ/API/seed"
-	// "github.com/labstack/echo"
+	"github.com/ezg27/Tribe-EQ/API/utils"
+	"github.com/ezg27/Tribe-EQ/API/router"
 )
 
 func main() {
-
-	fmt.Println("Hello there!")
-
+	
+	// Conditionally seed database
 	val := os.Getenv("SEED")
 	if val == "true" {
 		seed.Seed()
 	}
 
-	fmt.Println("Bye then!")
-	// e.Logger.Fatal(e.Start("localhost:3001"))
+	// Start new server
+	e := echo.New()
+
+	router.Init(e)
+	
+	// Listener
+	e.Logger.Fatal(e.Start(utils.GetEnv("PORT", "localhost:3001")))
 }
