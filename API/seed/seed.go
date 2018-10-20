@@ -7,11 +7,12 @@ import (
 	"encoding/json"
 	"gopkg.in/mgo.v2"
 	"github.com/ezg27/Tribe-EQ/API/models"
+	"github.com/ezg27/Tribe-EQ/API/utils"
 )
 
 // Seed function
 func Seed() {
-	session, err := mgo.Dial("mongodb://localhost:27017/Tribe_EQ")
+	session, err := mgo.Dial(utils.GetEnv("DB_URL", "mongodb://localhost:27017/Tribe_EQ"))
 	if err != nil {
 		log.Fatal(err)
 	}
