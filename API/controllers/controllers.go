@@ -31,10 +31,14 @@ func CreatePreset(c echo.Context) error {
 	return c.JSON(http.StatusCreated, res)
 }
 
-// // UpdatePreset function
-// func UpdatePreset(c echo.Context) error {
-
-// }
+// UpdatePreset function
+func UpdatePreset(c echo.Context) error {
+	id := c.Param("id")
+	p := new(models.Preset)
+	c.Bind(p)
+	res, _ := dao.UpdatePreset(id, *p)
+	return c.JSON(http.StatusOK, res)
+}
 
 // DeletePreset function
 func DeletePreset(c echo.Context) error {
