@@ -28,3 +28,6 @@ type Preset struct {
 		Gain float64 `json:"gain" bson:"gain"`
 	} `json:"hi_band" bson:"hi_band"`
 }
+
+// Presets :
+type Presets []Preset
