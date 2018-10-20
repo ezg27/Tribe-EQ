@@ -21,12 +21,12 @@ func Seed() {
 
 	session.SetMode(mgo.Monotonic, true)
 
-	err = session.DB("test").DropDatabase()
+	err = session.DB("TribeEQ").DropDatabase()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	c := session.DB("test").C("presets")
+	c := session.DB("TribeEQ").C("presets")
 
 	index := mgo.Index{
 		Key:        []string{"name"},
