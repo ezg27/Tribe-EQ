@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/labstack/echo"
 	"github.com/ezg27/Tribe-EQ/API/controllers"
+	"github.com/labstack/echo"
 )
 
 // Init : Create endpoints

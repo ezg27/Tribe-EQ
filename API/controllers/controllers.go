@@ -2,10 +2,11 @@ package controllers
 
 import (
 	"net/http"
-	"gopkg.in/mgo.v2/bson"
-	"github.com/labstack/echo"
-	"github.com/ezg27/Tribe-EQ/API/models"
+
 	"github.com/ezg27/Tribe-EQ/API/dao"
+	"github.com/ezg27/Tribe-EQ/API/models"
+	"github.com/labstack/echo"
+	"gopkg.in/mgo.v2/bson"
 )
 
 // GetAllPresets function

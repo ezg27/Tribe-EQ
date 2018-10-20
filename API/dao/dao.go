@@ -3,10 +3,10 @@ package dao
 import (
 	"net/http"
 	// "encoding/json"
-	"gopkg.in/mgo.v2/bson"
-	"github.com/labstack/echo"
 	"github.com/ezg27/Tribe-EQ/API/config"
 	"github.com/ezg27/Tribe-EQ/API/models"
+	"github.com/labstack/echo"
+	"gopkg.in/mgo.v2/bson"
 )
 
 const collection string = "presets"
@@ -47,7 +47,7 @@ func GetByID(id string) (models.Preset, error) {
 
 	c := session.DB(db.Name()).C(collection)
 
-	err = c.Find(bson.M{"_id" : bson.ObjectIdHex(id)}).One(&res)
+	err = c.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&res)
 	if err != nil {
 		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Unable to find preset")
 	}
@@ -58,7 +58,7 @@ func GetByID(id string) (models.Preset, error) {
 // CreatePreset : add new preset to database
 func CreatePreset(p models.Preset) (models.Preset, error) {
 	db := config.DB{}
-	
+
 	session, err := db.DoDial()
 	if err != nil {
 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to connect to database")

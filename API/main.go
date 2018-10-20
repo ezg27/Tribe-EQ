@@ -2,14 +2,15 @@ package main
 
 import (
 	"os"
-	"github.com/labstack/echo"
+
+	"github.com/ezg27/Tribe-EQ/API/router"
 	"github.com/ezg27/Tribe-EQ/API/seed"
 	"github.com/ezg27/Tribe-EQ/API/utils"
-	"github.com/ezg27/Tribe-EQ/API/router"
+	"github.com/labstack/echo"
 )
 
 func main() {
-	
+
 	// Conditionally seed database
 	val := os.Getenv("SEED")
 	if val == "true" {
@@ -22,7 +23,7 @@ func main() {
 	router.Init(e)
 
 	port := utils.GetEnv("PORT", "localhost:3001")
-	
+
 	// Listener
 	e.Logger.Fatal(e.Start(port))
 }
