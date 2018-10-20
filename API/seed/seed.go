@@ -1,13 +1,11 @@
 package seed
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
-
+	"encoding/json"
 	"gopkg.in/mgo.v2"
-
 	"github.com/ezg27/Tribe-EQ/API/models"
 )
 
@@ -21,11 +19,13 @@ func Seed() {
 
 	session.SetMode(mgo.Monotonic, true)
 
+	// Drop database before seeding
 	err = session.DB("TribeEQ").DropDatabase()
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Create database session
 	c := session.DB("TribeEQ").C("presets")
 
 	index := mgo.Index{
@@ -36,11 +36,13 @@ func Seed() {
 		Sparse:     true,
 	}
 
+	// Ensure unique preset names
 	err = c.EnsureIndex(index)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Parse JSON from data file
 	presetFile, err := os.Open("seed/presets.json")
 	defer presetFile.Close()
 	var presets []models.Preset
@@ -50,11 +52,13 @@ func Seed() {
 		log.Fatal(err)
 	}
 
+	// Convert to usable format
 	docs := make([]interface{}, len(presets))
 	for i := 0; i != len(presets); i++ {
 		docs[i] = presets[i]
 	}
 
+	// Insert preset data
 	err = c.Insert(docs...)
 	if err != nil {
 		log.Fatal(err)
