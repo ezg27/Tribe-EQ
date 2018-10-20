@@ -8,8 +8,8 @@ import (
 // Init : Create endpoints
 func Init(e *echo.Echo) {
 	e.GET("/api/presets", controllers.GetAllPresets)
+	e.POST("/api/presets", controllers.CreatePreset)
 	e.GET("/api/presets/:id", controllers.GetPresetByID)
-	// e.POST("/api/presets/:id", controllers.CreatePreset)
 	// e.PATCH("/api/presets/:id", controllers.UpdatePreset)
 	// e.DELETE("/api/presets/:id", controllers.DeletePreset)
 }
