@@ -28,7 +28,30 @@ func GetAll() (models.Presets, error) {
 	err = c.Find(bson.M{}).All(&res)
 
 	if err != nil {
-		return res, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to find preset data")
+		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Unable to find presets data")
+	}
+
+	return res, err
+}
+
+func GetById(id string) (models.Preset, error) {
+	db := config.DB{}
+	res := models.Preset{}
+
+	session, err := db.DoDial()
+
+	if err != nil {
+		return res, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to connect to database")
+	}
+
+	defer session.Close()
+
+	c := session.DB(db.Name()).C(collection)
+
+	err = c.Find(bson.M{"_id" : bson.ObjectIdHex(id)}).One(&res)
+
+	if err != nil {
+		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Unable to find preset")
 	}
 
 	return res, err
