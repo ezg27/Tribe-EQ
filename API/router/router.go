@@ -11,5 +11,5 @@ func Init(e *echo.Echo) {
 	e.POST("/api/presets", controllers.CreatePreset)
 	e.GET("/api/presets/:id", controllers.GetPresetByID)
 	// e.PATCH("/api/presets/:id", controllers.UpdatePreset)
-	// e.DELETE("/api/presets/:id", controllers.DeletePreset)
+	e.DELETE("/api/presets/:id", controllers.DeletePreset)
 }
