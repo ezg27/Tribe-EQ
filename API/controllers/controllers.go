@@ -14,9 +14,11 @@ func GetAllPresets(c echo.Context) error {
 }
 
 // GetPresetByID function
-// func GetPresetByID(c echo.Context) error {
-
-// }
+func GetPresetByID(c echo.Context) error {
+	id := c.Param("id")
+	res, _ := dao.GetById(id)
+	return c.JSON(http.StatusOK, res)
+}
 
 // // CreatePreset function
 // func CreatePreset(c echo.Context) error {
