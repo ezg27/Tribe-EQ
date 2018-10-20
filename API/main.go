@@ -20,7 +20,9 @@ func main() {
 	e := echo.New()
 
 	router.Init(e)
+
+	port := utils.GetEnv("PORT", "localhost:3001")
 	
 	// Listener
-	e.Logger.Fatal(e.Start(utils.GetEnv("PORT", "localhost:3001")))
+	e.Logger.Fatal(e.Start(port))
 }
