@@ -28,7 +28,7 @@ func CreatePreset(c echo.Context) error {
 	c.Bind(p)
 	p.ID = bson.NewObjectId()
 	res, _ := dao.CreatePreset(*p)
-	return c.JSON(http.StatusOK, res)
+	return c.JSON(http.StatusCreated, res)
 }
 
 // // UpdatePreset function
@@ -36,7 +36,9 @@ func CreatePreset(c echo.Context) error {
 
 // }
 
-// // DeletePreset function
-// func DeletePreset(c echo.Context) error {
-
-// }
+// DeletePreset function
+func DeletePreset(c echo.Context) error {
+	id := c.Param("id")
+	dao.DeletePreset(id)
+	return c.String(http.StatusOK, "Preset deleted!")
+}
