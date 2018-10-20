@@ -2,7 +2,7 @@ package dao
 
 import (
 	"net/http"
-	// "encoding/json"
+
 	"github.com/ezg27/Tribe-EQ/API/config"
 	"github.com/ezg27/Tribe-EQ/API/models"
 	"github.com/labstack/echo"
@@ -71,6 +71,27 @@ func CreatePreset(p models.Preset) (models.Preset, error) {
 	err = c.Insert(p)
 	if err != nil {
 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to insert preset into database")
+	}
+
+	return p, err
+}
+
+// UpdatePreset : update existing preset in database
+func UpdatePreset(id string, p models.Preset) (models.Preset, error) {
+	db := config.DB{}
+
+	session, err := db.DoDial()
+	if err != nil {
+		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to connect to database")
+	}
+
+	defer session.Close()
+
+	c := session.DB(db.Name()).C(collection)
+
+	err = c.Update(bson.M{}, p)
+	if err != nil {
+		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to update preset")
 	}
 
 	return p, err
