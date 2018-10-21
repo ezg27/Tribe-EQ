@@ -7,7 +7,6 @@ class Interface extends Component {
   render() {
     return (
       <div className='Interface-container'>
-        {/* <h1>Hello there</h1> */}
         <EQPanel />
         <PresetList />
       </div>
