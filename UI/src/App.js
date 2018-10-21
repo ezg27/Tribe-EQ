@@ -6,7 +6,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Tribe EQ</h1>
+        <div className='Title-container'>
+          <h1>Tribe EQ</h1>
+        </div>
         <Interface />
       </div>
     );
