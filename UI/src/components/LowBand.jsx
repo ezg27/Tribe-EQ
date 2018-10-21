@@ -6,11 +6,13 @@ import '../css/Bands.css';
 class LowBand extends Component {
   state = {
     gainVals: {
+      title: 'Gain',
       min: -15,
       max: 15,
       unit: 'dB'
     },
     freqVals: {
+      title: 'Freq',
       min: 30,
       max: 450,
       unit: 'Hz'
