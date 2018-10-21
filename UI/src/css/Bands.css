@@ -1,8 +1,11 @@
 .LowBand-container {
   grid-column: 1;
   height: 250px;
+  width: 120px;
   padding-top: 20px;
   display: flex;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .LowMidBand-container {
@@ -18,7 +21,16 @@
   grid-column: 4;
 }
 
-.Slider {
-  margin: auto;
-  /* display: flex; */
+.Slider-container {
+  margin: 0 auto;
+  width: 60px;
+}
+
+.Slider-title {
+  margin-top: 0;
+}
+
+.rc-Slider {
+  /* width: 80px; */
+  margin: 0 auto;
 }

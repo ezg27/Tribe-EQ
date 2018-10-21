@@ -16,14 +16,15 @@ class GainSlider extends Component {
     const { value } = this.state;
     const { scale } = this.props;
     return (
-      <div>
+      <div className='Slider-container'>
+        <h3 className='Slider-title'>{scale.title}</h3>
         <Slider
           vertical={true}
           min={scale.min}
           max={scale.max}
           value={value}
           onChange={this.handleChange}
-          className="Slider"
+          className="rc-Slider"
           trackStyle={{ backgroundColor: 'black' }}
         />
         <p>{value} {scale.unit}</p>
