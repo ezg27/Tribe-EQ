@@ -1,0 +1,9 @@
+.EQPanel-container {
+  margin: auto;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 0 3px 12px #c2c2c2;
+  background-color: white;
+  /* height: 70%; */
+  width: 100%;
+}

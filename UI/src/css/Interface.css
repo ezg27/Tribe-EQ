@@ -1,10 +1,8 @@
 .Interface-container {
+  display: grid;
   margin: auto;
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 4px;
-  box-shadow: 0 3px 12px #c2c2c2;
-  background-color: white;
-  height: 70%;
+  /* justify-content: center; */
+  grid-column-gap: 15px;
+  grid-template-columns: 3fr 1fr;
   width: 75%;
-
 }
