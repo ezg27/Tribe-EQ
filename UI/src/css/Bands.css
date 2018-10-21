@@ -1,0 +1,24 @@
+.LowBand-container {
+  grid-column: 1;
+  height: 250px;
+  padding-top: 20px;
+  display: flex;
+}
+
+.LowMidBand-container {
+  grid-column: 2;
+  height: 600px;
+}
+
+.HighMidBand-container {
+  grid-column: 3;
+}
+
+.HighBand-container {
+  grid-column: 4;
+}
+
+.Slider {
+  margin: auto;
+  /* display: flex; */
+}
