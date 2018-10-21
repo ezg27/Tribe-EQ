@@ -20,8 +20,10 @@ func main() {
 	// Start new server
 	e := echo.New()
 
+	
 	router.Init(e)
 
+	// Assign port
 	port := utils.GetEnv("PORT", "localhost:3001")
 
 	// Listener
