@@ -1,29 +1,23 @@
-.LowBand-container {
-  grid-column: 1;
-  height: 250px;
+.Band-container {
+
+  height: 86%;
   width: 120px;
-  padding-top: 20px;
+  padding: 20px;
   display: flex;
-  margin: 0 auto;
+  margin: 10px auto;
   justify-content: center;
-}
-
-.LowMidBand-container {
-  grid-column: 2;
-  height: 600px;
-}
-
-.HighMidBand-container {
-  grid-column: 3;
-}
-
-.HighBand-container {
-  grid-column: 4;
+  background-color: rgb(240, 240, 240);
+  border: 1px solid rgb(222, 222, 222);
+  border-radius: 4px;
+  box-shadow: 0 3px 12px #c2c2c2;
 }
 
 .Slider-container {
   margin: 0 auto;
-  width: 60px;
+}
+
+.Slider-container p {
+  width: 80px;
 }
 
 .Slider-title {
@@ -31,6 +25,6 @@
 }
 
 .rc-Slider {
-  /* width: 80px; */
+  height: 250px;
   margin: 0 auto;
 }
