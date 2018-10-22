@@ -2,7 +2,7 @@
   display: grid;
   margin: auto;
   /* justify-content: center; */
-  grid-column-gap: 15px;
+  grid-column-gap: 20px;
   grid-template-columns: 3fr 1fr;
   width: 75%;
 }
