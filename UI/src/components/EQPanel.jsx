@@ -34,7 +34,7 @@ class EQPanel extends Component {
         min: 600,
         max: 7000,
         default: 3000,
-        unit: 'Hz',
+        unit: 'kHz',
         color: 'rgb(22, 186, 22)'
       },
       {
@@ -42,16 +42,13 @@ class EQPanel extends Component {
         min: 1500,
         max: 16000,
         default: 8000,
-        unit: 'Hz',
+        unit: 'kHz',
         color: 'rgb(222, 59, 59)'
       }
     ]
   };
   render() {
-    const {
-      gainVals,
-      freqVals
-    } = this.state;
+    const { gainVals, freqVals } = this.state;
     return (
       <div className="EQPanel-container">
         {freqVals.map((band, i) => {

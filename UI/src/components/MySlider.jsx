@@ -16,8 +16,8 @@ class MySlider extends Component {
     const { value } = this.state;
     const { scale, trackColor } = this.props;
     return (
-      <div className='Slider-container'>
-        <h3 className='Slider-title'>{scale.title}</h3>
+      <div className="Slider-container">
+        <h3 className="Slider-title">{scale.title}</h3>
         <Slider
           vertical={true}
           min={scale.min}
@@ -27,7 +27,9 @@ class MySlider extends Component {
           className="rc-Slider"
           trackStyle={{ backgroundColor: trackColor }}
         />
-        <p>{value} {scale.unit}</p>
+        <p>
+          {scale.unit === 'kHz' ? (value / 1000).toFixed(2) : value} {scale.unit}
+        </p>
       </div>
     );
   }
@@ -35,8 +37,7 @@ class MySlider extends Component {
     const { scale } = this.props;
     this.setState({
       value: scale.default
-    })
-
+    });
   }
 }
 

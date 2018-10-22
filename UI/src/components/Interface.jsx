@@ -6,7 +6,7 @@ import '../css/Interface.css';
 class Interface extends Component {
   render() {
     return (
-      <div className='Interface-container'>
+      <div className="Interface-container">
         <EQPanel />
         <PresetList />
       </div>
