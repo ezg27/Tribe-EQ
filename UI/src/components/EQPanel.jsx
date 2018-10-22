@@ -7,15 +7,23 @@ import '../css/EQPanel.css';
 
 class EQPanel extends Component {
   state = {
-    value: 0
+    value: 0,
+    gainVals: {
+      title: 'Gain',
+      min: -15,
+      max: 15,
+      default: 0,
+      unit: 'dB'
+    }
   };
   render() {
+    const { gainVals } = this.state;
     return (
       <div className="EQPanel-container">
-        <LowBand />
-        <LowMidBand />
-        <HighMidBand />
-        <HighBand />
+        <LowBand gainVals={gainVals} />
+        <LowMidBand gainVals={gainVals} />
+        <HighMidBand gainVals={gainVals} />
+        <HighBand gainVals={gainVals} />
       </div>
     );
   }
