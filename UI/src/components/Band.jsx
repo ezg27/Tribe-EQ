@@ -65,7 +65,7 @@ class Band extends Component {
           for="OnOff-switch"
           style={{ gridRow: 2, gridColumn: 2 }}
         >
-          On/Off
+          Off/On
         </p>
       </div>
     );
