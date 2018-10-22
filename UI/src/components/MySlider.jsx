@@ -3,7 +3,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import '../css/Bands.css';
 
-class GainSlider extends Component {
+class MySlider extends Component {
   state = {
     value: 0
   };
@@ -14,7 +14,7 @@ class GainSlider extends Component {
 
   render() {
     const { value } = this.state;
-    const { scale } = this.props;
+    const { scale, trackColor } = this.props;
     return (
       <div className='Slider-container'>
         <h3 className='Slider-title'>{scale.title}</h3>
@@ -25,12 +25,19 @@ class GainSlider extends Component {
           value={value}
           onChange={this.handleChange}
           className="rc-Slider"
-          trackStyle={{ backgroundColor: 'black' }}
+          trackStyle={{ backgroundColor: trackColor }}
         />
         <p>{value} {scale.unit}</p>
       </div>
     );
   }
+  componentDidMount() {
+    const { scale } = this.props;
+    this.setState({
+      value: scale.default
+    })
+
+  }
 }
 
-export default GainSlider;
+export default MySlider;
