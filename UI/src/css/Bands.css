@@ -1,11 +1,12 @@
 .Band-container {
-
-  height: 86%;
+  height: 84%;
   width: 120px;
   padding: 20px;
-  display: flex;
-  margin: 10px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
   justify-content: center;
+  margin: 10px auto;
   background-color: rgb(240, 240, 240);
   border: 1px solid rgb(222, 222, 222);
   border-radius: 4px;
@@ -28,3 +29,22 @@
   height: 250px;
   margin: 0 auto;
 }
+
+.Param-switch {
+  margin: auto;
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.OnOff-switch {
+  margin: auto;
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.Switch-labels {
+  font-size: 13px;
+  font-weight: 100;
+  margin-left: 5px;
+}
+
