@@ -6,21 +6,6 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-// DB struct
-// type DB struct {
-// 	Session *mgo.Session
-// }
-
-// // DoDial : create new database session
-// func (db *DB) DoDial() (s *mgo.Session, err error) {
-// 	return mgo.Dial(utils.GetEnv("DB_URL", "mongodb://localhost:27017/Tribe_EQ"))
-// }
-
-// // Name : set mongo db name
-// func (db *DB) Name() string {
-// 	return "TribeEQ"
-// }
-
 // DB : database
 var DB *mgo.Database
 
