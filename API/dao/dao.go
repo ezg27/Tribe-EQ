@@ -9,10 +9,12 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+var s = config.Presets
+
 // GetAll : return all presets from database
 func GetAll() (models.Presets, error) {
 	res := models.Presets{}
-	err := config.Presets.Find(bson.M{}).All(&res)
+	err := s.Find(bson.M{}).All(&res.Presets)
 	if err != nil {
 		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Unable to find presets data")
 	}
@@ -22,7 +24,7 @@ func GetAll() (models.Presets, error) {
 // GetByID : return preset with passed ID
 func GetByID(id string) (models.Preset, error) {
 	res := models.Preset{}
-	err := config.Presets.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&res)
+	err := s.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&res)
 	if err != nil {
 		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Preset does not exist")
 	}
@@ -31,7 +33,7 @@ func GetByID(id string) (models.Preset, error) {
 
 // CreatePreset : add new preset to database
 func CreatePreset(p models.Preset) (models.Preset, error) {
-	err := config.Presets.Insert(p)
+	err := s.Insert(p)
 	if err != nil {
 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to insert preset into database")
 	}
@@ -41,7 +43,7 @@ func CreatePreset(p models.Preset) (models.Preset, error) {
 // UpdatePreset : update existing preset in database
 func UpdatePreset(id string, p models.Preset) (models.Preset, error) {
 	objID := bson.ObjectIdHex(id)
-	err := config.Presets.Update(bson.M{"_id": objID}, p)
+	err := s.Update(bson.M{"_id": objID}, p)
 	if err != nil {
 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to update preset")
 	}
@@ -51,7 +53,7 @@ func UpdatePreset(id string, p models.Preset) (models.Preset, error) {
 // DeletePreset : remove preset from database
 func DeletePreset(id string) error {
 	objID := bson.ObjectIdHex(id)
-	err := config.Presets.RemoveId(objID)
+	err := s.RemoveId(objID)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "Error: Unable to delete preset from database")
 	}
