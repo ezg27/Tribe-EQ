@@ -5,7 +5,7 @@ import "gopkg.in/mgo.v2/bson"
 // Preset struct
 type Preset struct {
 	ID bson.ObjectId `json:"id" bson:"_id,omitempty"`
-	Name string `bson:"name"`
+	Name string `json:"name" bson:"name"`
 	LowBand struct {
 		OnOff bool `json:"on/off" bson:"on/off"`
 		PeakShelf string `json:"peak/shelf" bson:"peak/shelf"`
