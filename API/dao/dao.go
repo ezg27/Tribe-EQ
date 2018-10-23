@@ -29,47 +29,24 @@ func GetByID(id string) (models.Preset, error) {
 	return res, err
 }
 
-// // CreatePreset : add new preset to database
-// func CreatePreset(p models.Preset) (models.Preset, error) {
-// 	db := config.DB{}
+// CreatePreset : add new preset to database
+func CreatePreset(p models.Preset) (models.Preset, error) {
+	err := config.Presets.Insert(p)
+	if err != nil {
+		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to insert preset into database")
+	}
+	return p, err
+}
 
-// 	session, err := db.DoDial()
-// 	if err != nil {
-// 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to connect to database")
-// 	}
-
-// 	defer session.Close()
-
-// 	c := session.DB(db.Name()).C(collection)
-
-// 	err = c.Insert(p)
-// 	if err != nil {
-// 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to insert preset into database")
-// 	}
-
-// 	return p, err
-// }
-
-// // UpdatePreset : update existing preset in database
-// func UpdatePreset(id string, p models.Preset) (models.Preset, error) {
-// 	db := config.DB{}
-
-// 	session, err := db.DoDial()
-// 	if err != nil {
-// 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to connect to database")
-// 	}
-
-// 	defer session.Close()
-
-// 	c := session.DB(db.Name()).C(collection)
-
-// 	err = c.Update(bson.M{}, p)
-// 	if err != nil {
-// 		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to update preset")
-// 	}
-
-// 	return p, err
-// }
+// UpdatePreset : update existing preset in database
+func UpdatePreset(id string, p models.Preset) (models.Preset, error) {
+	objID := bson.ObjectIdHex(id)
+	err := config.Presets.Update(bson.M{"_id": objID}, p)
+	if err != nil {
+		return p, echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to update preset")
+	}
+	return p, err
+}
 
 // // DeletePreset : remove preset from database
 // func DeletePreset(id string) error {
