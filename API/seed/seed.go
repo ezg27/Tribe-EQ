@@ -12,7 +12,7 @@ import (
 
 // Seed function
 func Seed() {
-	session, err := mgo.Dial(utils.GetEnv("DB_URL", "mongodb://localhost:27017/Tribe_EQ"))
+	session, err := mgo.Dial(utils.GetEnv("DB_URL", "mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,9 +32,6 @@ func Seed() {
 	index := mgo.Index{
 		Key:        []string{"name"},
 		Unique:     true,
-		DropDups:   true,
-		Background: true,
-		Sparse:     true,
 	}
 
 	// Ensure unique preset names
