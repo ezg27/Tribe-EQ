@@ -24,7 +24,7 @@ func GetByID(id string) (models.Preset, error) {
 	res := models.Preset{}
 	err := config.Presets.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&res)
 	if err != nil {
-		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Unable to find preset")
+		return res, echo.NewHTTPError(http.StatusNotFound, "Error: Preset does not exist")
 	}
 	return res, err
 }
