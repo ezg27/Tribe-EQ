@@ -34,5 +34,5 @@ type Preset struct {
 
 // Presets :
 type Presets struct {
-	Presets []Preset
+	Presets []Preset `json:"presets"`
 }
