@@ -7,9 +7,15 @@ import (
 	"github.com/ezg27/Tribe-EQ/API/models"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
+	"gopkg.in/mgo.v2"
 )
 
 var s = config.Presets
+
+var index = mgo.Index{
+	Key:    []string{"name"},
+	Unique: true,
+}
 
 // GetAllPresets function
 func GetAllPresets(c echo.Context) error {
@@ -40,8 +46,12 @@ func CreatePreset(c echo.Context) error {
 	p := new(models.Preset)
 	c.Bind(p)
 	p.ID = bson.NewObjectId()
-	err := s.Insert(p)
+	err := s.EnsureIndex(index)
+	err = s.Insert(p)
 	if err != nil {
+		if mgo.IsDup(err) {
+			return echo.NewHTTPError(http.StatusInternalServerError, "Error: Preset name already exists")
+		}
 		return echo.NewHTTPError(http.StatusInternalServerError, "Error: Unable to insert preset into database")
 	}
 	return c.JSON(http.StatusCreated, p)
