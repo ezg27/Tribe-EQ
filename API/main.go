@@ -20,7 +20,7 @@ func main() {
 	// Start new server
 	e := echo.New()
 
-	
+	// Pass echo instance to router
 	router.Init(e)
 
 	// Assign port
