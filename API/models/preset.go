@@ -33,4 +33,6 @@ type Preset struct {
 }
 
 // Presets :
-type Presets []Preset
+type Presets struct {
+	Presets []Preset
+}
