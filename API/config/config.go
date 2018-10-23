@@ -13,7 +13,7 @@ var DB *mgo.Database
 var Presets *mgo.Collection
 
 func init() {
-	s, err := mgo.Dial(utils.GetEnv("DB_URL", "mongodb://localhost:27017/Tribe_EQ"))
+	s, err := mgo.Dial(utils.GetEnv("DB_URL", "mongodb://localhost:27017"))
 	if err != nil {
 		panic(err)
 	}
