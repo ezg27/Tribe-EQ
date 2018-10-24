@@ -2,12 +2,10 @@ package config
 
 import (
 	"fmt"
+
 	"github.com/ezg27/Tribe-EQ/API/utils"
 	"gopkg.in/mgo.v2"
 )
-
-// DB : database
-var DB *mgo.Database
 
 // Presets : presets
 var Presets *mgo.Collection
@@ -18,8 +16,7 @@ func init() {
 		panic(err)
 	}
 
-	DB = s.DB("TribeEQ")
-	Presets = DB.C("presets")
+	Presets = s.DB("TribeEQ").C("presets")
 
 	fmt.Println("You are connected to the database...")
 }
