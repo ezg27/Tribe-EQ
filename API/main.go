@@ -7,6 +7,7 @@ import (
 	"github.com/ezg27/Tribe-EQ/API/seed"
 	"github.com/ezg27/Tribe-EQ/API/utils"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
 func main() {
@@ -19,6 +20,7 @@ func main() {
 
 	// Start new server
 	e := echo.New()
+	e.Use(middleware.CORS())
 
 	// Pass echo instance to router
 	router.Init(e)
