@@ -8,7 +8,7 @@ class PresetList extends Component {
     currentPreset: null
   };
   render() {
-    const { presets, currentPreset } = this.state;
+    const { currentPreset } = this.state;
     return (
       <div>
         <div className="PresetList-container">
@@ -26,6 +26,7 @@ class PresetList extends Component {
                     }
                     onClick={() => this.setCurrentPreset(preset)}
                   >
+                    <span style={{ float: 'right' }}>X</span>
                     <p>{preset.name}</p>
                   </div>
                 </li>
@@ -37,15 +38,8 @@ class PresetList extends Component {
       </div>
     );
   }
-  // componentDidUpdate(prevProps) {
-  //   const { presets } = this.props;
-  //   if (prevProps !== this.props) {
-  //     this.setState({
-  //       presets: presets
-  //     });
-  //   }
-  // }
   setCurrentPreset = preset => {
+    this.props.passCurrentPreset(preset);
     this.setState({
       currentPreset: preset
     });
