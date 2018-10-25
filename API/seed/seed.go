@@ -21,13 +21,13 @@ func Seed() {
 	session.SetMode(mgo.Monotonic, true)
 
 	// Drop database before seeding
-	err = session.DB("TribeEQ").DropDatabase()
+	err = session.DB("tribe_eq_data").DropDatabase()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Create database session
-	c := session.DB("TribeEQ").C("presets")
+	c := session.DB("tribe_eq_data").C("presets")
 
 	index := mgo.Index{
 		Key:        []string{"name"},
