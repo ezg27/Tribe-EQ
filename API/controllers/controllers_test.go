@@ -51,6 +51,33 @@ var (
       "freq_khz": 8.00,
       "gain": 0
     }
+	}`
+	updatePreset = `{
+    "name": "Vocal Screamer",
+    "low_band": {
+      "on/off": false,
+      "peak/shelf": "peak",
+      "freq_hz": 60,
+      "gain": 4
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_hz": 500,
+      "gain": 0
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 3.00,
+      "gain": 0
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 8.00,
+      "gain": 0
+    }
   }`
 )
 
@@ -144,21 +171,10 @@ func TestGetPresetByID(t *testing.T) {
 	}
 
 	// Assertions
-	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 201 for succesfully created preset")
-	assert.Equal(t, bson.ObjectIdHex("5bd0ace8c59db1f056e48c28"), preset.ID, "Returns correct preset by id")
+	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 200")
+	assert.Equal(t, bson.ObjectIdHex(c.Param("id")), preset.ID, "Returns correct preset by id")
 	assert.Equal(t, "Vocal Massage", preset.Name, "Returns correctly named preset")
 	assert.Equal(t, true, preset.LowMidBand.OnOff, "Returns nested values correctly")
-	
-// 	resp := rec.Result()
-// 	body, err := ioutil.ReadAll(resp.Body)
-// 	if err != nil {
-// 		t.Fatalf("Error unmarshalling JSON %s",
-// 			err.Error())
-// 	}
-
-// 	// Assertions
-// 	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 201 for succesfully created preset")
-// 	assert.JSONEq(t, dummyPreset, string(body), "Returns correctly inserted preset from database")
 }
 
 func TestCreatePreset(t *testing.T) {
@@ -189,13 +205,32 @@ func TestCreatePresetErrors(t *testing.T) {
 	// Assertions
 	err := CreatePreset(c)
 	assert.EqualError(t, err, "code=500, message=Error: Preset name already exists", "Returns error message for duplicate preset")
-	clearDB()
 }
 
 func TestUpdatePreset(t *testing.T) {
+	req := httptest.NewRequest(http.MethodPatch, "/api/presets", strings.NewReader(updatePreset))
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c27")
+	UpdatePreset(c)
 
+	preset := models.Preset{}
+	err := json.Unmarshal(rec.Body.Bytes(), &preset)
+	if err != nil {
+		fmt.Println("hello there")
+		panic(err)
+	}
+
+	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 200")
+	assert.Equal(t, bson.ObjectIdHex(c.Param("id")), preset.ID, "Returns correct preset by id")
+	assert.Equal(t, "Vocal Screamer", preset.Name, "Returns correctly updated preset")
+	assert.Equal(t, float64(4), preset.LowBand.Gain, "Returns nested values updated correctly")
 }
 
 func TestDeletePreset(t *testing.T) {
 
+	clearDB()
 }
