@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/ezg27/Tribe-EQ/API/config"
-	"github.com/ezg27/Tribe-EQ/API/models"
+	"github.com/ezg27/Tribe-EQ/config"
+	"github.com/ezg27/Tribe-EQ/models"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"

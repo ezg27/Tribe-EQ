@@ -6,8 +6,8 @@ import (
 	"os"
 	"encoding/json"
 	"gopkg.in/mgo.v2"
-	"github.com/ezg27/Tribe-EQ/API/models"
-	"github.com/ezg27/Tribe-EQ/API/utils"
+	"github.com/ezg27/Tribe-EQ/models"
+	"github.com/ezg27/Tribe-EQ/utils"
 )
 
 // Seed function

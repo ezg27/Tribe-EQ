@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/ezg27/Tribe-EQ/API/router"
-	"github.com/ezg27/Tribe-EQ/API/seed"
-	"github.com/ezg27/Tribe-EQ/API/utils"
+	"github.com/ezg27/Tribe-EQ/router"
+	"github.com/ezg27/Tribe-EQ/seed"
+	"github.com/ezg27/Tribe-EQ/utils"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ezg27/Tribe-EQ/API/models"
+	"github.com/ezg27/Tribe-EQ/models"
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/mgo.v2"

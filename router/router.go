@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/ezg27/Tribe-EQ/API/controllers"
+	"github.com/ezg27/Tribe-EQ/controllers"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )

@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 
-	"github.com/ezg27/Tribe-EQ/API/utils"
+	"github.com/ezg27/Tribe-EQ/utils"
 	"gopkg.in/mgo.v2"
 )
 
