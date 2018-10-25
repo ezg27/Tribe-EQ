@@ -7,7 +7,7 @@ class Controls extends Component {
       <div className='Controls-container'>
         <button className='Control-button'>Update Preset</button>
         <button className='Control-button'>Create New Preset</button>
-        {/* <button className='control-button'></button> */}
+        <button className='Control-button'>Delete Current Preset</button>
       </div>
     );
   }
