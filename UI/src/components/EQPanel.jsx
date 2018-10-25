@@ -5,14 +5,14 @@ import '../css/EQPanel.css';
 class EQPanel extends Component {
   state = {
     value: 0,
-    gainVals: {
+    gainDefs: {
       title: 'Gain',
       min: -15,
       max: 15,
       default: 0,
       unit: 'dB'
     },
-    freqVals: [
+    freqDefs: [
       {
         title: 'Freq',
         min: 30,
@@ -48,21 +48,25 @@ class EQPanel extends Component {
     ]
   };
   render() {
-    const { gainVals, freqVals } = this.state;
+    const { gainDefs, freqDefs } = this.state;
+    const { currentPreset } = this.props;
+    const bands = !currentPreset ? null : [currentPreset.low_band, currentPreset.low_mid_band, currentPreset.high_mid_band, currentPreset.high_band];
     return (
       <div className="EQPanel-container">
-        {freqVals.map((band, i) => {
+        {freqDefs.map((band, i) => {
           return (
             <Band
-              gainVals={gainVals}
-              freqVals={band}
+              gainDefs={gainDefs}
+              freqDefs={band}
               style={{ gridColumn: i + 1 }}
+              bandVals={!currentPreset ? null : bands[i]}
             />
           );
         })}
       </div>
     );
   }
+  componentDidUpdate(prevProps) {}
 }
 
 export default EQPanel;
