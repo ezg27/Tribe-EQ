@@ -128,15 +128,27 @@ func TestGetAllPresets(t *testing.T) {
 	assert.Equal(t, "peak", presets.Presets[1].LowBand.PeakShelf, "Returns nested values correctly")
 }
 
-// func TestGetPresetByID(t *testing.T) {
-// 	req := httptest.NewRequest(http.MethodGet, "/api/presets", nil)
-// 	rec := httptest.NewRecorder()
-// 	c := e.NewContext(req, rec)
-// 	c.SetPath("/:id")
-// 	c.SetParamNames("id")
-// 	c.SetParamValues("5bd0ace8c59db1f056e48c28")
-// 	GetPresetByID(c)
+func TestGetPresetByID(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/api/presets", nil)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c28")
+	GetPresetByID(c)
 
+	preset := models.Preset{}
+	err := json.Unmarshal(rec.Body.Bytes(), &preset)
+	if err != nil {
+		panic(err)
+	}
+
+	// Assertions
+	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 201 for succesfully created preset")
+	assert.Equal(t, bson.ObjectIdHex("5bd0ace8c59db1f056e48c28"), preset.ID, "Returns correct preset by id")
+	assert.Equal(t, "Vocal Massage", preset.Name, "Returns correctly named preset")
+	assert.Equal(t, true, preset.LowMidBand.OnOff, "Returns nested values correctly")
+	
 // 	resp := rec.Result()
 // 	body, err := ioutil.ReadAll(resp.Body)
 // 	if err != nil {
@@ -147,8 +159,7 @@ func TestGetAllPresets(t *testing.T) {
 // 	// Assertions
 // 	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 201 for succesfully created preset")
 // 	assert.JSONEq(t, dummyPreset, string(body), "Returns correctly inserted preset from database")
-// 	clearDB()
-// }
+}
 
 func TestCreatePreset(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/api/presets", strings.NewReader(dummyPreset))
