@@ -1,0 +1,58 @@
+[
+  {
+    "id": "5bd0ace8c59db1f056e48c27",
+    "name": "INIT",
+    "low_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_hz": 60,
+      "gain": 0
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_hz": 500,
+      "gain": 0
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 3.00,
+      "gain": 0
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 8.00,
+      "gain": 0
+    }
+  },
+  {
+    "id": "5bd0ace8c59db1f056e48c28",
+    "name": "Vocal Massage",
+    "low_band": {
+      "on/off": false,
+      "peak/shelf": "peak",
+      "freq_hz": 108,
+      "gain": 4.0
+    },
+    "low_mid_band": {
+      "on/off": true,
+      "hi_low_q": "hi",
+      "freq_hz": 290,
+      "gain": -4.1
+    },
+    "hi_mid_band": {
+      "on/off": true,
+      "hi_low_q": "low",
+      "freq_khz": 2.41,
+      "gain": 2.2
+    },
+    "hi_band": {
+      "on/off": true,
+      "peak/shelf": "peak",
+      "freq_khz": 6.04,
+      "gain": 4.0
+    }
+  }
+]
