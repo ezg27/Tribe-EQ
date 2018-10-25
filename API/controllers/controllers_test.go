@@ -177,6 +177,19 @@ func TestGetPresetByID(t *testing.T) {
 	assert.Equal(t, true, preset.LowMidBand.OnOff, "Returns nested values correctly")
 }
 
+func TestInvalidIDError(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/api/presets", nil)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c2")
+
+	// Assertions
+	err := GetPresetByID(c)
+	assert.EqualError(t, err, "code=400, message=Error: Invalid ObjectId", "Returns error message for invalid ID")
+}
+
 func TestCreatePreset(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/api/presets", strings.NewReader(dummyPreset))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
@@ -220,10 +233,10 @@ func TestUpdatePreset(t *testing.T) {
 	preset := models.Preset{}
 	err := json.Unmarshal(rec.Body.Bytes(), &preset)
 	if err != nil {
-		fmt.Println("hello there")
 		panic(err)
 	}
 
+	// Assertions
 	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 200")
 	assert.Equal(t, bson.ObjectIdHex(c.Param("id")), preset.ID, "Returns correct preset by id")
 	assert.Equal(t, "Vocal Screamer", preset.Name, "Returns correctly updated preset")
@@ -231,6 +244,36 @@ func TestUpdatePreset(t *testing.T) {
 }
 
 func TestDeletePreset(t *testing.T) {
+	req := httptest.NewRequest(http.MethodDelete, "/api/presets", nil)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c28")
+	DeletePreset(c)
+
+	deleteMessage := models.DeleteMessage{}
+	err := json.Unmarshal(rec.Body.Bytes(), &deleteMessage)
+	if err != nil {
+		panic(err)
+	}
+
+	// Assertions
+	assert.Equal(t, http.StatusOK, rec.Code, "Returns status 200")
+	assert.Equal(t, "Preset deleted!", deleteMessage.Message, "Returns correct message indicating preset deleted")
+}
+
+func TestIfPresetDoesNotExist(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/api/presets", nil)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c28")
+
+	// Assertions
+	err := GetPresetByID(c)
+	assert.EqualError(t, err, "code=404, message=Error: Preset not found", "Returns error message for preset not found")
 
 	clearDB()
 }
