@@ -177,7 +177,7 @@ func TestGetPresetByID(t *testing.T) {
 	assert.Equal(t, true, preset.LowMidBand.OnOff, "Returns nested values correctly")
 }
 
-func TestInvalidIDError(t *testing.T) {
+func TestGetPresetInvalidID(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/api/presets", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -243,6 +243,20 @@ func TestUpdatePreset(t *testing.T) {
 	assert.Equal(t, float64(4), preset.LowBand.Gain, "Returns nested values updated correctly")
 }
 
+func TestUpdatePresetInvalidID(t *testing.T) {
+	req := httptest.NewRequest(http.MethodPatch, "/api/presets", strings.NewReader(updatePreset))
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c2")
+	
+	// Assertions
+	err := UpdatePreset(c)
+	assert.EqualError(t, err, "code=400, message=Error: Invalid ObjectId", "Returns error message for invalid ID")
+}
+
 func TestDeletePreset(t *testing.T) {
 	req := httptest.NewRequest(http.MethodDelete, "/api/presets", nil)
 	rec := httptest.NewRecorder()
@@ -263,7 +277,7 @@ func TestDeletePreset(t *testing.T) {
 	assert.Equal(t, "Preset deleted!", deleteMessage.Message, "Returns correct message indicating preset deleted")
 }
 
-func TestIfPresetDoesNotExist(t *testing.T) {
+func TestIfPresetDeleted(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/api/presets", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
@@ -276,4 +290,17 @@ func TestIfPresetDoesNotExist(t *testing.T) {
 	assert.EqualError(t, err, "code=404, message=Error: Preset not found", "Returns error message for preset not found")
 
 	clearDB()
+}
+
+func TestDeletePresetInvalidID(t *testing.T) {
+	req := httptest.NewRequest(http.MethodDelete, "/api/presets", nil)
+	rec := httptest.NewRecorder()
+	c := e.NewContext(req, rec)
+	c.SetPath("/:id")
+	c.SetParamNames("id")
+	c.SetParamValues("5bd0ace8c59db1f056e48c2")
+
+	// Assertions
+	err := DeletePreset(c)
+	assert.EqualError(t, err, "code=400, message=Error: Invalid ObjectId", "Returns error message for invalid ID")
 }
