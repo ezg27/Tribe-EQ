@@ -16,7 +16,7 @@ func init() {
 		panic(err)
 	}
 
-	Presets = s.DB("TribeEQ").C("presets")
+	Presets = s.DB("tribe_eq_data").C("presets")
 
 	fmt.Println("You are connected to the database...")
 }
