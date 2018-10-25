@@ -14,10 +14,18 @@ class PresetList extends Component {
         <div className="PresetList-container">
           <h3>Preset List</h3>
           <ul className="presets-list">
-            {presets.map(preset => {
+            {this.props.presets.map((preset, i) => {
               return (
                 <li key={preset.id}>
-                  <div className="list-item" style={currentPreset === preset.id ? { backgroundColor: 'rgb(169, 169, 169)'} : null}>
+                  <div
+                    className="list-item"
+                    style={
+                      (currentPreset === null && !i) || currentPreset === preset
+                        ? { backgroundColor: 'rgb(169, 169, 169)' }
+                        : null
+                    }
+                    onClick={() => this.setCurrentPreset(preset)}
+                  >
                     <p>{preset.name}</p>
                   </div>
                 </li>
@@ -29,13 +37,19 @@ class PresetList extends Component {
       </div>
     );
   }
-  componentDidMount() {
-    const { presets } = this.props;
+  // componentDidUpdate(prevProps) {
+  //   const { presets } = this.props;
+  //   if (prevProps !== this.props) {
+  //     this.setState({
+  //       presets: presets
+  //     });
+  //   }
+  // }
+  setCurrentPreset = preset => {
     this.setState({
-      presets,
-      // currentPreset: presets[0].id
+      currentPreset: preset
     });
-  }
+  };
 }
 
 export default PresetList;
