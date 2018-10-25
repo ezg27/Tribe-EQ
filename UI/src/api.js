@@ -1,8 +1,6 @@
 import axios from 'axios';
-const DB_URL = 'localhost:3001';
+const DB_URL = 'https://tribe-eq.herokuapp.com';
 
 export const fetchPresets = () => {
-  return axios.get(`${DB_URL}/api/presets`).then(({ data }) => {
-    console.log(data);
-  });
+  return axios.get(`${DB_URL}/api/presets`).then(({ data }) => data.presets);
 };
