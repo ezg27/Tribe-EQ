@@ -85,10 +85,7 @@ func DeletePreset(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "Error: Preset not found")
 	}
-	type DeleteMessage struct {
-		Message string `json:"message"`
-	}
-	m := &DeleteMessage{
+	m := models.DeleteMessage{
 		Message: "Preset deleted!",
 	}
 	return c.JSON(http.StatusOK, m)
