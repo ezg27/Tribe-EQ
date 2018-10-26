@@ -13,8 +13,8 @@ class MySlider extends Component {
   };
 
   render() {
-    const { value } = this.state;
-    const { scale, trackColor } = this.props;
+    // const { value } = this.state;
+    const { scale, trackColor, disabled, value } = this.props;
     return (
       <div className="Slider-container">
         <h3 className="Slider-title">{scale.title}</h3>
@@ -23,6 +23,7 @@ class MySlider extends Component {
           min={scale.min}
           max={scale.max}
           value={value}
+          disabled={!disabled}
           onChange={this.handleChange}
           className="rc-Slider"
           trackStyle={{ backgroundColor: trackColor }}
