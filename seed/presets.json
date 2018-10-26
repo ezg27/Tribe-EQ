@@ -32,7 +32,7 @@
       "on/off": false,
       "peak/shelf": "peak",
       "freq_hz": 108,
-      "gain": 4.0
+      "gain": 0
     },
     "low_mid_band": {
       "on/off": true,
@@ -58,7 +58,7 @@
     "low_band": {
       "on/off": true,
       "peak/shelf": "shelf",
-      "freq_hz": 112,
+      "freq_hz": 78,
       "gain": 5.4
     },
     "low_mid_band": {
@@ -77,7 +77,7 @@
       "on/off": true,
       "peak/shelf": "peak",
       "freq_khz": 8.01,
-      "gain": 6.0
+      "gain": 4.2
     }
   },
   {
@@ -113,7 +113,7 @@
       "on/off": false,
       "peak/shelf": "peak",
       "freq_hz": 203,
-      "gain": 7.1
+      "gain": 0
     },
     "low_mid_band": {
       "on/off": true,
@@ -139,8 +139,8 @@
     "low_band": {
       "on/off": false,
       "peak/shelf": "peak",
-      "freq_hz": 203,
-      "gain": 7.1
+      "freq_hz": 181,
+      "gain": 0
     },
     "low_mid_band": {
       "on/off": true,
@@ -167,7 +167,7 @@
       "on/off": false,
       "peak/shelf": "shelf",
       "freq_hz": 129,
-      "gain": 8.4
+      "gain": 0
     },
     "low_mid_band": {
       "on/off": true,
