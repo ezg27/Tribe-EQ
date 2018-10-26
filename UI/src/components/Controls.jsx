@@ -24,7 +24,7 @@ const customStyles = {
 class Controls extends Component {
   state = {
     name: '',
-    modalIsOpen: false,
+    modalIsOpen: false
   };
   render() {
     return (
@@ -40,15 +40,23 @@ class Controls extends Component {
           style={customStyles}
           ariaHideApp={false}
         >
-        <button className='Exit-button' onClick={this.closeModal}>X</button>
-          <TextField
-            id="standard-name"
-            label="Name"
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            margin="normal"
-          />
-          <button className='Create-button' onClick={this.handleCreate}>Create</button>
+          <button className="Exit-button" onClick={this.closeModal}>
+            X
+          </button>
+          <form className="Preset-form">
+            <TextField
+              id="standard-name"
+              required
+              InputLabelProps={{ required: false }}
+              label="Name"
+              value={this.state.name}
+              onChange={this.handleChange('name')}
+              margin="normal"
+            />
+            <button className="Create-button" onClick={this.handleCreate}>
+              Create
+            </button>
+          </form>
         </Modal>
         <button className="Control-button" onClick={this.handleDelete}>
           Delete Current Preset
@@ -78,7 +86,18 @@ class Controls extends Component {
     });
   };
 
-  handleCreate = () => {};
+  handleCreate = e => {
+    e.preventDefault();
+    const { name } = this.state;
+    const { currentPreset, recallPresets } = this.props;
+    currentPreset.name = name;
+    const { id, ...preset } = currentPreset;
+    api.createPreset(preset).then(response => {
+      console.log(response);
+      recallPresets();
+      this.closeModal();
+    });
+  };
 
   handleDelete = () => {
     const { currentPreset, recallPresets } = this.props;
