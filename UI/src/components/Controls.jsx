@@ -26,10 +26,12 @@ class Controls extends Component {
   state = {
     name: '',
     modalIsOpen: false,
-    presetDeleted: false,
-    modalMessage: null
+    presetAction: false,
+    modalMessage: null,
+    err: null
   };
   render() {
+    const { err, presetAction, modalMessage, modalIsOpen, name } = this.state;
     return (
       <div className="Controls-container">
         <button className="Control-button" onClick={this.handleUpdate}>
@@ -38,18 +40,29 @@ class Controls extends Component {
         <button className="Control-button" onClick={this.openModal}>
           Create New Preset
         </button>
-        <Modal
-          isOpen={this.state.presetDeleted}
-          style={customStyles}
-          ariaHideApp={false}
-        >
-          <p>{this.state.modalMessage}</p>
+        <Modal isOpen={presetAction} style={customStyles} ariaHideApp={false}>
+          <p>{modalMessage}</p>
         </Modal>
         <Modal
-          isOpen={this.state.modalIsOpen}
+          isOpen={err ? true : false}
           style={customStyles}
           ariaHideApp={false}
         >
+          <p>{!err ? '' : err.message}</p>
+          <button
+            onClick={this.handleBack}
+            style={{
+              width: '60px',
+              height: '25px',
+              margin: 'auto',
+              borderRadius: '4px',
+              fontSize: '13px'
+            }}
+          >
+            Back
+          </button>
+        </Modal>
+        <Modal isOpen={modalIsOpen} style={customStyles} ariaHideApp={false}>
           <button className="Exit-button" onClick={this.closeModal}>
             X
           </button>
@@ -59,7 +72,7 @@ class Controls extends Component {
               required
               InputLabelProps={{ required: false }}
               label="Name"
-              value={this.state.name}
+              value={name}
               onChange={this.handleChange('name')}
               margin="normal"
             />
@@ -89,16 +102,31 @@ class Controls extends Component {
     });
   };
 
+  handleBack = () => {
+    const { recallPresets } = this.props;
+    this.setState({
+      err: null
+    });
+    recallPresets();
+  };
+
   handleUpdate = () => {
     const { currentPreset } = this.props;
     api.updatePreset(currentPreset).then(response => {
-      this.setState({
-        presetDeleted: true,
-        modalMessage: `Preset '${response.name}' updated!`
-      });
-      setTimeout(() => {
-        this.setState({ presetDeleted: false });
-      }, 2000);
+      if (response.type === 'error') {
+        response.message = 'Error: Preset name already exists!';
+        this.setState({
+          err: response
+        });
+      } else {
+        this.setState({
+          presetAction: true,
+          modalMessage: `Preset '${response.name}' updated!`
+        });
+        setTimeout(() => {
+          this.setState({ presetAction: false });
+        }, 2000);
+      }
     });
   };
 
@@ -109,31 +137,46 @@ class Controls extends Component {
     currentPreset.name = name;
     const { id, ...preset } = currentPreset;
     api.createPreset(preset).then(response => {
-      recallPresets();
-      this.closeModal();
-      this.setState({
-        presetDeleted: true,
-        modalMessage: `Preset '${response.name}' created!`
-      });
-      setTimeout(() => {
-        this.setState({ presetDeleted: false });
-      }, 2000);
+      if (response.type === 'error') {
+        response.message = 'Error: Preset name already exists!';
+        this.setState({
+          err: response
+        });
+        this.closeModal();
+      } else {
+        recallPresets();
+        this.closeModal();
+        this.setState({
+          presetAction: true,
+          modalMessage: `Preset '${response.name}' created!`
+        });
+        setTimeout(() => {
+          this.setState({ presetAction: false });
+        }, 2000);
+      }
     });
   };
 
   handleDelete = () => {
     const { currentPreset, recallPresets } = this.props;
     api.deletePreset(currentPreset.id).then(response => {
-      recallPresets();
-      this.setState({
-        presetDeleted: true,
-        modalMessage: response.message
-      });
-      setTimeout(() => {
+      if (response.type === 'error') {
+        response.message = 'Error: Preset name already exists!';
         this.setState({
-          presetDeleted: false
+          err: response
         });
-      }, 2000);
+      } else {
+        recallPresets();
+        this.setState({
+          presetAction: true,
+          modalMessage: response.message
+        });
+        setTimeout(() => {
+          this.setState({
+            presetAction: false
+          });
+        }, 2000);
+      }
     });
   };
 }
