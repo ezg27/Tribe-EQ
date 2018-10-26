@@ -15,6 +15,7 @@ class EQPanel extends Component {
     freqDefs: [
       {
         title: 'Freq',
+        band: 'low_band',
         min: 30,
         max: 450,
         default: 60,
@@ -23,6 +24,7 @@ class EQPanel extends Component {
       },
       {
         title: 'Freq',
+        band: 'low_mid_band',
         min: 200,
         max: 2500,
         default: 500,
@@ -31,6 +33,7 @@ class EQPanel extends Component {
       },
       {
         title: 'Freq',
+        band: 'hi_mid_band',
         min: 600,
         max: 7000,
         default: 3000,
@@ -39,6 +42,7 @@ class EQPanel extends Component {
       },
       {
         title: 'Freq',
+        band: 'hi_band',
         min: 1500,
         max: 16000,
         default: 8000,
@@ -49,7 +53,7 @@ class EQPanel extends Component {
   };
   render() {
     const { gainDefs, freqDefs } = this.state;
-    const { currentPreset } = this.props;
+    const { currentPreset, handleGainChange, handleFreqChange } = this.props;
     const bands = !currentPreset
       ? null
       : [
@@ -67,6 +71,8 @@ class EQPanel extends Component {
               freqDefs={band}
               style={{ gridColumn: i + 1 }}
               bandVals={!currentPreset ? null : bands[i]}
+              handleGainChange={handleGainChange}
+              handleFreqChange={handleFreqChange}
             />
           );
         })}
