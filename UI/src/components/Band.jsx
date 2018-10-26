@@ -11,7 +11,13 @@ class Band extends Component {
   };
   render() {
     const { onOff } = this.state;
-    const { gainDefs, freqDefs, bandVals } = this.props;
+    const {
+      gainDefs,
+      freqDefs,
+      bandVals,
+      handleGainChange,
+      handleFreqChange
+    } = this.props;
     return (
       <div className="Band-container">
         <MySlider
@@ -20,6 +26,8 @@ class Band extends Component {
           style={{ gridColumn: 1 }}
           disabled={onOff}
           value={!bandVals ? null : bandVals.gain}
+          handleGainChange={handleGainChange}
+          band={freqDefs.band}
         />
         <MySlider
           scale={freqDefs}
@@ -33,6 +41,8 @@ class Band extends Component {
                 ? bandVals.freq_hz
                 : bandVals.freq_khz * 1000
           }
+          handleFreqChange={handleFreqChange}
+          band={freqDefs.band}
         />
         <Switch
           onChange={this.handleEQChange}
@@ -55,7 +65,9 @@ class Band extends Component {
           htmlFor="EQParam-switch"
           style={{ gridRow: 2, gridColumn: 1 }}
         >
-          {freqDefs.min === 200 || freqDefs.min === 600 ? 'Hi/Low Q' : 'Peak/Shelf'}
+          {freqDefs.min === 200 || freqDefs.min === 600
+            ? 'Hi/Low Q'
+            : 'Peak/Shelf'}
         </p>
         <Switch
           onChange={this.handleOnOffChange}
