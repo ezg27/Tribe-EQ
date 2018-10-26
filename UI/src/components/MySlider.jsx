@@ -4,17 +4,16 @@ import 'rc-slider/assets/index.css';
 import '../css/Bands.css';
 
 class MySlider extends Component {
-  state = {
-    value: 0
-  };
-
-  handleChange = value => {
-    this.setState({ value });
-  };
-
   render() {
-    // const { value } = this.state;
-    const { scale, trackColor, disabled, value } = this.props;
+    const {
+      scale,
+      trackColor,
+      disabled,
+      value,
+      handleGainChange,
+      handleFreqChange,
+      band
+    } = this.props;
     return (
       <div className="Slider-container">
         <h3 className="Slider-title">{scale.title}</h3>
@@ -24,21 +23,21 @@ class MySlider extends Component {
           max={scale.max}
           value={value}
           disabled={!disabled}
-          onChange={this.handleChange}
+          onChange={
+            handleGainChange
+              ? value => handleGainChange(value, this.props.band)
+              : value => handleFreqChange(value, this.props.band)
+          }
           className="rc-Slider"
           trackStyle={{ backgroundColor: trackColor }}
+          band={band}
         />
         <p>
-          {scale.unit === 'kHz' ? (value / 1000).toFixed(2) : value} {scale.unit}
+          {scale.unit === 'kHz' ? (value / 1000).toFixed(2) : value}{' '}
+          {scale.unit}
         </p>
       </div>
     );
-  }
-  componentDidMount() {
-    const { scale } = this.props;
-    this.setState({
-      value: scale.default
-    });
   }
 }
 
