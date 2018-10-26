@@ -17,6 +17,7 @@ const customStyles = {
     height: '15%',
     display: 'grid',
     gridTemplateRows: '2fr 1fr',
+    textAlign: 'center',
     gridGap: '5px'
   }
 };
@@ -24,7 +25,9 @@ const customStyles = {
 class Controls extends Component {
   state = {
     name: '',
-    modalIsOpen: false
+    modalIsOpen: false,
+    presetDeleted: false,
+    modalMessage: null
   };
   render() {
     return (
@@ -35,6 +38,13 @@ class Controls extends Component {
         <button className="Control-button" onClick={this.openModal}>
           Create New Preset
         </button>
+        <Modal
+          isOpen={this.state.presetDeleted}
+          style={customStyles}
+          ariaHideApp={false}
+        >
+          <p>{this.state.modalMessage}</p>
+        </Modal>
         <Modal
           isOpen={this.state.modalIsOpen}
           style={customStyles}
@@ -82,7 +92,13 @@ class Controls extends Component {
   handleUpdate = () => {
     const { currentPreset } = this.props;
     api.updatePreset(currentPreset).then(response => {
-      console.log(response);
+      this.setState({
+        presetDeleted: true,
+        modalMessage: `Preset '${response.name}' updated!`
+      });
+      setTimeout(() => {
+        this.setState({ presetDeleted: false });
+      }, 2000);
     });
   };
 
@@ -93,17 +109,31 @@ class Controls extends Component {
     currentPreset.name = name;
     const { id, ...preset } = currentPreset;
     api.createPreset(preset).then(response => {
-      console.log(response);
       recallPresets();
       this.closeModal();
+      this.setState({
+        presetDeleted: true,
+        modalMessage: `Preset '${response.name}' created!`
+      });
+      setTimeout(() => {
+        this.setState({ presetDeleted: false });
+      }, 2000);
     });
   };
 
   handleDelete = () => {
     const { currentPreset, recallPresets } = this.props;
     api.deletePreset(currentPreset.id).then(response => {
-      console.log(response);
       recallPresets();
+      this.setState({
+        presetDeleted: true,
+        modalMessage: response.message
+      });
+      setTimeout(() => {
+        this.setState({
+          presetDeleted: false
+        });
+      }, 2000);
     });
   };
 }
