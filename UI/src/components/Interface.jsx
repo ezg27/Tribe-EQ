@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EQPanel from './EQPanel';
 import PresetList from './PresetList';
 import Controls from './Controls';
+import Loading from './Loading';
 import * as api from '../api';
 import '../css/Interface.css';
 
@@ -9,10 +10,11 @@ class Interface extends Component {
   state = {
     presets: [],
     currentPreset: null,
+    loading: false,
     err: null
   };
   render() {
-    const { presets, currentPreset } = this.state;
+    const { presets, currentPreset, loading } = this.state;
     return (
       <div className="Interface-container">
         <EQPanel
@@ -23,11 +25,15 @@ class Interface extends Component {
           handleEQSwitchChange={this.handleEQSwitchChange}
         />
         <div>
-          <PresetList
-            presets={presets}
-            currentPreset={currentPreset}
-            passCurrentPreset={this.passCurrentPreset}
-          />
+          {loading ? (
+            <Loading />
+          ) : (
+            <PresetList
+              presets={presets}
+              currentPreset={currentPreset}
+              passCurrentPreset={this.passCurrentPreset}
+            />
+          )}
           <Controls
             recallPresets={this.recallPresets}
             currentPreset={currentPreset}
@@ -43,14 +49,26 @@ class Interface extends Component {
   }
 
   passCurrentPreset = preset => {
+    this.setState({ loading: true });
     api.fetchPresets().then(response => {
-      this.setState({ presets: response, currentPreset: preset });
+      this.setState({
+        presets: response,
+        currentPreset: preset,
+        loading: false
+      });
     });
   };
 
   recallPresets = () => {
+    this.setState({
+      loading: true
+    });
     api.fetchPresets().then(response => {
-      this.setState({ presets: response, currentPreset: response[0] });
+      this.setState({
+        presets: response,
+        currentPreset: response[0],
+        loading: false
+      });
     });
   };
 
