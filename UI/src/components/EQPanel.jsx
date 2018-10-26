@@ -4,7 +4,7 @@ import '../css/EQPanel.css';
 
 class EQPanel extends Component {
   state = {
-    value: 0,
+    // currentPreset: null,
     gainDefs: {
       title: 'Gain',
       min: -15,
@@ -50,7 +50,14 @@ class EQPanel extends Component {
   render() {
     const { gainDefs, freqDefs } = this.state;
     const { currentPreset } = this.props;
-    const bands = !currentPreset ? null : [currentPreset.low_band, currentPreset.low_mid_band, currentPreset.high_mid_band, currentPreset.high_band];
+    const bands = !currentPreset
+      ? null
+      : [
+          currentPreset.low_band,
+          currentPreset.low_mid_band,
+          currentPreset.hi_mid_band,
+          currentPreset.hi_band
+        ];
     return (
       <div className="EQPanel-container">
         {freqDefs.map((band, i) => {
@@ -66,7 +73,23 @@ class EQPanel extends Component {
       </div>
     );
   }
-  componentDidUpdate(prevProps) {}
+  // componentDidUpdate(prevProps) {
+  //   const { currentPreset } = this.props;
+  //   if (prevProps.currentPreset !== this.props.currentPreset) {
+  //     this.setState({
+  //       currentPreset
+  //     });
+  //   }
+  // }
+  // handleChange = (event, value) => {
+  //   this.setState({ value });
+  // };
+  handleOnOffChange = checked => {
+    this.setState({ onOff: checked });
+  };
+  handleEQChange = checked => {
+    this.setState({ eqParam: checked });
+  };
 }
 
 export default EQPanel;
