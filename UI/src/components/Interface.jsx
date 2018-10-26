@@ -19,6 +19,7 @@ class Interface extends Component {
           currentPreset={currentPreset}
           handleGainChange={this.handleGainChange}
           handleFreqChange={this.handleFreqChange}
+          handleOnOffChange={this.handleOnOffChange}
         />
         <div>
           <PresetList
@@ -65,11 +66,23 @@ class Interface extends Component {
   };
   handleFreqChange = (value, band) => {
     let currentPreset = { ...this.state.currentPreset };
-    let key = band === 'hi_band' || band === 'hi_mid_band' ? 'freq_khz' : 'freq_hz';
-    currentPreset[band][key] = band === 'hi_band' || band === 'hi_mid_band' ? Number((value / 1000).toFixed(2)) : value;
+    let key =
+      band === 'hi_band' || band === 'hi_mid_band' ? 'freq_khz' : 'freq_hz';
+    currentPreset[band][key] =
+      band === 'hi_band' || band === 'hi_mid_band'
+        ? Number((value / 1000).toFixed(2))
+        : value;
     this.setState({
       currentPreset
     });
+  };
+  handleOnOffChange = (checked, band) => {
+    let currentPreset = { ...this.state.currentPreset };
+    currentPreset[band]['on/off'] = checked;
+    this.setState({ currentPreset });
+  };
+  handleEQChange = checked => {
+    this.setState({ eqParam: checked });
   };
 }
 
