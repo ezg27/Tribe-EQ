@@ -7,7 +7,7 @@ class PresetList extends Component {
     currentPreset: null
   };
   render() {
-    const { currentPreset } = this.state;
+    const { currentPreset, passCurrentPreset } = this.props;
     return (
       <div className="PresetList-container">
         <h3>Preset List</h3>
@@ -18,13 +18,13 @@ class PresetList extends Component {
                 <div
                   className="list-item"
                   style={
-                    (currentPreset === null && !i) || currentPreset === preset
+                    (currentPreset === null && !i) ||
+                    currentPreset.id === preset.id
                       ? { backgroundColor: 'rgb(169, 169, 169)' }
                       : null
                   }
-                  onClick={() => this.setCurrentPreset(preset)}
+                  onClick={() => passCurrentPreset(preset)}
                 >
-                  <span style={{ float: 'right' }}>X</span>
                   <p>{preset.name}</p>
                 </div>
               </li>
@@ -34,20 +34,20 @@ class PresetList extends Component {
       </div>
     );
   }
-  componentDidUpdate(prevProps) {
-    const { currentPreset } = this.props;
-    if (prevProps.currentPreset !== this.props.currentPreset) {
-      this.setState({
-        currentPreset
-      });
-    }
-  }
-  setCurrentPreset = preset => {
-    this.props.passCurrentPreset(preset);
-    this.setState({
-      currentPreset: preset
-    });
-  };
+  // componentDidUpdate(prevProps) {
+  //   const { currentPreset } = this.props;
+  //   if (prevProps.currentPreset !== this.props.currentPreset) {
+  //     this.setState({
+  //       currentPreset
+  //     });
+  //   }
+  // }
+  // setCurrentPreset = preset => {
+  //   this.props.passCurrentPreset(preset);
+  //   // this.setState({
+  //   //   currentPreset: preset
+  //   // });
+  // };
 }
 
 export default PresetList;
