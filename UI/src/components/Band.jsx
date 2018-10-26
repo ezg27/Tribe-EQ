@@ -15,7 +15,8 @@ class Band extends Component {
       bandVals,
       handleGainChange,
       handleFreqChange,
-      handleOnOffChange
+      handleOnOffChange,
+      handleEQSwitchChange
     } = this.props;
     return (
       <div className="Band-container">
@@ -44,8 +45,20 @@ class Band extends Component {
           band={freqDefs.band}
         />
         <Switch
-          onChange={this.handleEQChange}
-          checked={this.state.eqParam}
+          onChange={checked => handleEQSwitchChange(checked, freqDefs.band)}
+          checked={
+            !bandVals ? false : (bandVals.hasOwnProperty('peak/shelf') &&
+              bandVals['peak/shelf'] === 'peak') ||
+            (bandVals.hasOwnProperty('hi_low_q') &&
+              bandVals['hi_low_q'] === 'hi')
+              ? false
+              : (bandVals.hasOwnProperty('peak/shelf') &&
+                  bandVals['peak/shelf'] === 'shelf') ||
+                (bandVals.hasOwnProperty('hi_low_q') &&
+                  bandVals['hi_low_q'] === 'low')
+                ? true
+                : false
+          }
           onColor="#86d3ff"
           onHandleColor="#2693e6"
           handleDiameter={22}
