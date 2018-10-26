@@ -7,7 +7,6 @@
   width: 100%;
   height: 80%;
   max-height: 413px;
-  align-self: stretch;
   overflow-y: scroll;
 }
 
@@ -50,5 +49,4 @@ li {
 
 .Control-button {
   margin: auto;
-  
 }
