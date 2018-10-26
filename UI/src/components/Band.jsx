@@ -6,17 +6,16 @@ import '../css/Bands.css';
 
 class Band extends Component {
   state = {
-    onOff: true,
     eqParam: false
   };
   render() {
-    const { onOff } = this.state;
     const {
       gainDefs,
       freqDefs,
       bandVals,
       handleGainChange,
-      handleFreqChange
+      handleFreqChange,
+      handleOnOffChange
     } = this.props;
     return (
       <div className="Band-container">
@@ -24,7 +23,7 @@ class Band extends Component {
           scale={gainDefs}
           trackColor={freqDefs.color}
           style={{ gridColumn: 1 }}
-          disabled={onOff}
+          disabled={!bandVals ? false : bandVals['on/off']}
           value={!bandVals ? null : bandVals.gain}
           handleGainChange={handleGainChange}
           band={freqDefs.band}
@@ -33,7 +32,7 @@ class Band extends Component {
           scale={freqDefs}
           trackColor={freqDefs.color}
           style={{ gridColumn: 2 }}
-          disabled={onOff}
+          disabled={!bandVals ? false : bandVals['on/off']}
           value={
             !bandVals
               ? null
@@ -52,7 +51,7 @@ class Band extends Component {
           handleDiameter={22}
           uncheckedIcon={false}
           checkedIcon={false}
-          disabled={!onOff}
+          disabled={!bandVals ? true : !bandVals['on/off']}
           boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
           activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
           height={15}
@@ -70,8 +69,8 @@ class Band extends Component {
             : 'Peak/Shelf'}
         </p>
         <Switch
-          onChange={this.handleOnOffChange}
-          checked={onOff}
+          onChange={checked => handleOnOffChange(checked, freqDefs.band)}
+          checked={!bandVals ? false : bandVals['on/off']}
           onColor="#86d3ff"
           onHandleColor="#2693e6"
           handleDiameter={22}
@@ -94,9 +93,9 @@ class Band extends Component {
       </div>
     );
   }
-  handleOnOffChange = checked => {
-    this.setState({ onOff: checked });
-  };
+  // handleOnOffChange = checked => {
+  //   this.setState({ onOff: checked });
+  // };
   handleEQChange = checked => {
     this.setState({ eqParam: checked });
   };
