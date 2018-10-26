@@ -56,7 +56,8 @@ class EQPanel extends Component {
       currentPreset,
       handleGainChange,
       handleFreqChange,
-      handleOnOffChange
+      handleOnOffChange,
+      handleEQSwitchChange
     } = this.props;
     const bands = !currentPreset
       ? null
@@ -79,6 +80,7 @@ class EQPanel extends Component {
               handleGainChange={handleGainChange}
               handleFreqChange={handleFreqChange}
               handleOnOffChange={handleOnOffChange}
+              handleEQSwitchChange={handleEQSwitchChange}
             />
           );
         })}
