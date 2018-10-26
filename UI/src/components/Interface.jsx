@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EQPanel from './EQPanel';
 import PresetList from './PresetList';
+import Controls from './Controls';
 import * as api from '../api';
 import '../css/Interface.css';
 
@@ -15,10 +16,14 @@ class Interface extends Component {
     return (
       <div className="Interface-container">
         <EQPanel currentPreset={currentPreset} />
-        <PresetList
-          presets={presets}
-          passCurrentPreset={this.passCurrentPreset}
-        />
+        <div>
+          <PresetList
+            presets={presets}
+            currentPreset={currentPreset}
+            passCurrentPreset={this.passCurrentPreset}
+          />
+          <Controls recallPresets={this.recallPresets} />
+        </div>
       </div>
     );
   }
@@ -29,13 +34,22 @@ class Interface extends Component {
           err: response
         });
       } else {
-        this.setState({ presets: response });
+        this.setState({ presets: response, currentPreset: response[0] });
       }
     });
   }
   passCurrentPreset = preset => {
     this.setState({
       currentPreset: preset
+    });
+  };
+  recallPresets = () => {
+    api.fetchPresets().then(response => {
+      if (response.type === 'error') {
+        this.setState({ err: response });
+      } else {
+        this.setState({ presets: response, currentPreset: response[0] });
+      }
     });
   };
 }
