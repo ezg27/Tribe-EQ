@@ -28,36 +28,32 @@ class Interface extends Component {
             currentPreset={currentPreset}
             passCurrentPreset={this.passCurrentPreset}
           />
-          <Controls recallPresets={this.recallPresets} />
+          <Controls
+            recallPresets={this.recallPresets}
+            currentPreset={currentPreset}
+          />
         </div>
       </div>
     );
   }
   componentDidMount() {
     api.fetchPresets().then(response => {
-      if (response.type === 'error') {
-        this.setState({
-          err: response
-        });
-      } else {
-        this.setState({ presets: response, currentPreset: response[0] });
-      }
+      this.setState({ presets: response, currentPreset: response[0] });
     });
   }
+
   passCurrentPreset = preset => {
-    this.setState({
-      currentPreset: preset
+    api.fetchPresets().then(response => {
+      this.setState({ presets: response, currentPreset: preset });
     });
   };
+
   recallPresets = () => {
     api.fetchPresets().then(response => {
-      if (response.type === 'error') {
-        this.setState({ err: response });
-      } else {
-        this.setState({ presets: response, currentPreset: response[0] });
-      }
+      this.setState({ presets: response, currentPreset: response[0] });
     });
   };
+
   handleGainChange = (value, band) => {
     let currentPreset = { ...this.state.currentPreset };
     currentPreset[band].gain = value;
@@ -65,6 +61,7 @@ class Interface extends Component {
       currentPreset
     });
   };
+
   handleFreqChange = (value, band) => {
     let currentPreset = { ...this.state.currentPreset };
     let key =
@@ -77,11 +74,13 @@ class Interface extends Component {
       currentPreset
     });
   };
+
   handleOnOffChange = (checked, band) => {
     let currentPreset = { ...this.state.currentPreset };
     currentPreset[band]['on/off'] = checked;
     this.setState({ currentPreset });
   };
+
   handleEQSwitchChange = (checked, band) => {
     let currentPreset = { ...this.state.currentPreset };
     const parameter =
