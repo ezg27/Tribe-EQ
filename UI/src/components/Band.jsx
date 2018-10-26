@@ -6,31 +6,43 @@ import '../css/Bands.css';
 
 class Band extends Component {
   state = {
-    onOff: false,
+    onOff: true,
     eqParam: false
   };
   render() {
-    const { gainVals, freqVals } = this.props;
+    const { onOff } = this.state;
+    const { gainDefs, freqDefs, bandVals } = this.props;
     return (
       <div className="Band-container">
         <MySlider
-          scale={gainVals}
-          trackColor={freqVals.color}
+          scale={gainDefs}
+          trackColor={freqDefs.color}
           style={{ gridColumn: 1 }}
+          disabled={onOff}
+          value={!bandVals ? null : bandVals.gain}
         />
         <MySlider
-          scale={freqVals}
-          trackColor={freqVals.color}
+          scale={freqDefs}
+          trackColor={freqDefs.color}
           style={{ gridColumn: 2 }}
+          disabled={onOff}
+          value={
+            !bandVals
+              ? null
+              : bandVals.freq_hz
+                ? bandVals.freq_hz
+                : bandVals.freq_khz * 1000
+          }
         />
         <Switch
-          onChange={this.handleOnOffChange}
-          checked={this.state.onOff}
+          onChange={this.handleEQChange}
+          checked={this.state.eqParam}
           onColor="#86d3ff"
           onHandleColor="#2693e6"
           handleDiameter={22}
           uncheckedIcon={false}
           checkedIcon={false}
+          disabled={!onOff}
           boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
           activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
           height={15}
@@ -46,8 +58,8 @@ class Band extends Component {
           Peak/Shelf
         </p>
         <Switch
-          onChange={this.handleEQChange}
-          checked={this.state.eqParam}
+          onChange={this.handleOnOffChange}
+          checked={onOff}
           onColor="#86d3ff"
           onHandleColor="#2693e6"
           handleDiameter={22}
