@@ -4,7 +4,6 @@ import '../css/EQPanel.css';
 
 class EQPanel extends Component {
   state = {
-    // currentPreset: null,
     gainDefs: {
       title: 'Gain',
       min: -15,
@@ -53,7 +52,12 @@ class EQPanel extends Component {
   };
   render() {
     const { gainDefs, freqDefs } = this.state;
-    const { currentPreset, handleGainChange, handleFreqChange } = this.props;
+    const {
+      currentPreset,
+      handleGainChange,
+      handleFreqChange,
+      handleOnOffChange
+    } = this.props;
     const bands = !currentPreset
       ? null
       : [
@@ -67,35 +71,20 @@ class EQPanel extends Component {
         {freqDefs.map((band, i) => {
           return (
             <Band
+              key={i}
               gainDefs={gainDefs}
               freqDefs={band}
               style={{ gridColumn: i + 1 }}
               bandVals={!currentPreset ? null : bands[i]}
               handleGainChange={handleGainChange}
               handleFreqChange={handleFreqChange}
+              handleOnOffChange={handleOnOffChange}
             />
           );
         })}
       </div>
     );
   }
-  // componentDidUpdate(prevProps) {
-  //   const { currentPreset } = this.props;
-  //   if (prevProps.currentPreset !== this.props.currentPreset) {
-  //     this.setState({
-  //       currentPreset
-  //     });
-  //   }
-  // }
-  // handleChange = (event, value) => {
-  //   this.setState({ value });
-  // };
-  handleOnOffChange = checked => {
-    this.setState({ onOff: checked });
-  };
-  handleEQChange = checked => {
-    this.setState({ eqParam: checked });
-  };
 }
 
 export default EQPanel;
