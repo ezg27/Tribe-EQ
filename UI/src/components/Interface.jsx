@@ -15,7 +15,11 @@ class Interface extends Component {
     const { presets, currentPreset } = this.state;
     return (
       <div className="Interface-container">
-        <EQPanel currentPreset={currentPreset} />
+        <EQPanel
+          currentPreset={currentPreset}
+          handleGainChange={this.handleGainChange}
+          handleFreqChange={this.handleFreqChange}
+        />
         <div>
           <PresetList
             presets={presets}
@@ -50,6 +54,21 @@ class Interface extends Component {
       } else {
         this.setState({ presets: response, currentPreset: response[0] });
       }
+    });
+  };
+  handleGainChange = (value, band) => {
+    let currentPreset = { ...this.state.currentPreset };
+    currentPreset[band].gain = value;
+    this.setState({
+      currentPreset
+    });
+  };
+  handleFreqChange = (value, band) => {
+    let currentPreset = { ...this.state.currentPreset };
+    let key = band === 'hi_band' || band === 'hi_mid_band' ? 'freq_khz' : 'freq_hz';
+    currentPreset[band][key] = band === 'hi_band' || band === 'hi_mid_band' ? Number((value / 1000).toFixed(2)) : value;
+    this.setState({
+      currentPreset
     });
   };
 }
