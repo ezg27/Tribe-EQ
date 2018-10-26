@@ -13,8 +13,10 @@ export const createPreset = preset => {
   return axios.post(`${DB_URL}/api/presets`, preset).then(({ data }) => data);
 };
 
-export const updatePreset = id => {
-  return axios.patch(`${DB_URL}/api/presets/${id}`).then(({ data }) => data);
+export const updatePreset = preset => {
+  return axios
+    .patch(`${DB_URL}/api/presets/${preset.id}`, preset)
+    .then(({ data }) => data);
 };
 
 export const deletePreset = id => {
