@@ -33,7 +33,7 @@ class MySlider extends Component {
           band={band}
         />
         <p>
-          {scale.unit === 'kHz' ? (value / 1000).toFixed(2) : value}{' '}
+          {scale.unit === 'kHz' ? (value / 1000).toFixed(2) : scale.unit === 'dB' ? value / 10 : value}{' '}
           {scale.unit}
         </p>
       </div>

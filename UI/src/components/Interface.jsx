@@ -74,7 +74,7 @@ class Interface extends Component {
 
   handleGainChange = (value, band) => {
     let currentPreset = { ...this.state.currentPreset };
-    currentPreset[band].gain = value;
+    currentPreset[band].gain = value / 10;
     this.setState({
       currentPreset
     });

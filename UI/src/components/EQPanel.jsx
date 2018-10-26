@@ -6,8 +6,8 @@ class EQPanel extends Component {
   state = {
     gainDefs: {
       title: 'Gain',
-      min: -15,
-      max: 15,
+      min: -150,
+      max: 150,
       default: 0,
       unit: 'dB'
     },

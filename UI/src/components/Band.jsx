@@ -25,7 +25,7 @@ class Band extends Component {
           trackColor={freqDefs.color}
           style={{ gridColumn: 1 }}
           disabled={!bandVals ? false : bandVals['on/off']}
-          value={!bandVals ? null : bandVals.gain}
+          value={!bandVals ? null : bandVals.gain * 10}
           handleGainChange={handleGainChange}
           band={freqDefs.band}
         />
@@ -47,17 +47,19 @@ class Band extends Component {
         <Switch
           onChange={checked => handleEQSwitchChange(checked, freqDefs.band)}
           checked={
-            !bandVals ? false : (bandVals.hasOwnProperty('peak/shelf') &&
-              bandVals['peak/shelf'] === 'peak') ||
-            (bandVals.hasOwnProperty('hi_low_q') &&
-              bandVals['hi_low_q'] === 'hi')
+            !bandVals
               ? false
               : (bandVals.hasOwnProperty('peak/shelf') &&
-                  bandVals['peak/shelf'] === 'shelf') ||
+                  bandVals['peak/shelf'] === 'peak') ||
                 (bandVals.hasOwnProperty('hi_low_q') &&
-                  bandVals['hi_low_q'] === 'low')
-                ? true
-                : false
+                  bandVals['hi_low_q'] === 'hi')
+                ? false
+                : (bandVals.hasOwnProperty('peak/shelf') &&
+                    bandVals['peak/shelf'] === 'shelf') ||
+                  (bandVals.hasOwnProperty('hi_low_q') &&
+                    bandVals['hi_low_q'] === 'low')
+                  ? true
+                  : false
           }
           onColor="#86d3ff"
           onHandleColor="#2693e6"
