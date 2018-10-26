@@ -55,7 +55,7 @@ class Band extends Component {
           htmlFor="EQParam-switch"
           style={{ gridRow: 2, gridColumn: 1 }}
         >
-          Peak/Shelf
+          {freqDefs.min === 200 || freqDefs.min === 600 ? 'Hi/Low Q' : 'Peak/Shelf'}
         </p>
         <Switch
           onChange={this.handleOnOffChange}
