@@ -108,12 +108,6 @@ class Band extends Component {
       </div>
     );
   }
-  // handleOnOffChange = checked => {
-  //   this.setState({ onOff: checked });
-  // };
-  handleEQChange = checked => {
-    this.setState({ eqParam: checked });
-  };
 }
 
 export default Band;
