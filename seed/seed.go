@@ -1,13 +1,14 @@
 package seed
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
-	"encoding/json"
-	"gopkg.in/mgo.v2"
+
 	"github.com/ezg27/Tribe-EQ/models"
 	"github.com/ezg27/Tribe-EQ/utils"
+	"gopkg.in/mgo.v2"
 )
 
 // Seed function
@@ -30,8 +31,8 @@ func Seed() {
 	c := session.DB("tribe_eq_data").C("presets")
 
 	index := mgo.Index{
-		Key:        []string{"name"},
-		Unique:     true,
+		Key:    []string{"name"},
+		Unique: true,
 	}
 
 	// Ensure unique preset names
