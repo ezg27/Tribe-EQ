@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tribe EQ Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+  <style>
+    body {
+      font-family: 'Helvetica Neue';
+      background-color: rgb(60, 60, 60);
+      color: aliceblue;
+    }
+    p {
+      padding-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tribe EQ</h1>
+  <h2>API Endpoints</h2>
+  <h3><a></a>GET <code>/api/presets</code></h3>
+  <p>Get all presets</p>
+  <h3><a></a>POST <code>/api/presets</code></h3>
+  <p>Add a new preset. This route requires a JSON body with <code>name</code> key value pair <br> e.g: <code>{"name": "new preset"}</code></p>
+  <h3><a></a>GET <code>/api/presets/:id</code></h3>
+  <p>Returns an individual preset by ID</p>
+  <h3><a></a>PATCH <code>/api/presets/:id</code></h3>
+  <p>Updates an existing preset by ID. This route requires a JSON body containing the updated presets new values</p>
+  <h3><a></a>DELETE <code>/api/presets/:id</code></h3>
+  <p>Deletes a preset by ID</p>
+</body>
+</html>
