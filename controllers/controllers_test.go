@@ -122,15 +122,7 @@ func clearDB() {
 	}
 }
 
-func findPresetByID() models.Preset {
-	p := models.Preset{}
-	err := s.Find(bson.M{"_id": id}).One(&p)
-	if err != nil {
-		panic(err)
-	}
-	return p
-}
-
+// Initialize new echo instance
 var e = echo.New()
 
 func TestGetAllPresets(t *testing.T) {
