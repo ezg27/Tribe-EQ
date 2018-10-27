@@ -9,7 +9,7 @@ import (
 // Init : Create endpoints
 func Init(e *echo.Echo) {
 	e.Pre(middleware.RemoveTrailingSlash())
-	e.File("/", "public/index.html")
+	e.File("/api", "public/index.html")
 	e.GET("/api/presets", controllers.GetAllPresets)
 	e.POST("/api/presets", controllers.CreatePreset)
 	e.GET("/api/presets/:id", controllers.GetPresetByID)
