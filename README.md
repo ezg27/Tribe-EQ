@@ -2,9 +2,12 @@
 
 A full stack implementation of a user interface for the equaliser section of a typical mixing console/plugin. Through interaction with a RESTful API, it allows for the management of settings through viewing, creating, updating and deleting presets.
 
+Frontend built with React + hosted on Netlify, corresponding RESTful API built using Go + hosted on Heroku. Database hosted with MongoDB/mLab.
+
+I opted for a typical MVC architecture, allowing for the separation of concerns and ease of testing the controller functions.
+
 I chose to utilise the value ranges (and colour scheme) for gain/frequency controls of a typical SSL 4000-series console. While such boards often utilise variable dials/knobs to control parameters like gain/frequency, I opted for sliders due to greater ease of use in web/screen based applications.
 
-Frontend built with React + hosted on Netlify, corresponding RESTful API built using Go + hosted on Heroku. Database hosted with MongoDB/mLab.
 
 APP URL: https://condescending-galileo-cfdd11.netlify.com
 
@@ -24,6 +27,8 @@ go get -u github.com/ezg27/Tribe-EQ
 
 #### Prerequisites
 * Go - version 1.11.1
+* Echo - version 3.3.6 - https://echo.labstack.com/
+* Dep - version 0.5.0 - https://golang.github.io/dep/
 
 <br>
 
