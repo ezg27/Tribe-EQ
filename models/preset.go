@@ -37,7 +37,7 @@ type Presets struct {
 	Presets []Preset `json:"presets"`
 }
 
-// DeleteMessage : 
+// DeleteMessage :
 type DeleteMessage struct {
-		Message string `json:"message"`
-	}
+	Message string `json:"message"`
+}
