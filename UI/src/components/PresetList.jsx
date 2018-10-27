@@ -34,20 +34,6 @@ class PresetList extends Component {
       </div>
     );
   }
-  // componentDidUpdate(prevProps) {
-  //   const { currentPreset } = this.props;
-  //   if (prevProps.currentPreset !== this.props.currentPreset) {
-  //     this.setState({
-  //       currentPreset
-  //     });
-  //   }
-  // }
-  // setCurrentPreset = preset => {
-  //   this.props.passCurrentPreset(preset);
-  //   // this.setState({
-  //   //   currentPreset: preset
-  //   // });
-  // };
 }
 
 export default PresetList;
