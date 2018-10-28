@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Band from './Band';
+import PropTypes from 'prop-types';
 import '../css/EQPanel.css';
 
 class EQPanel extends Component {
@@ -88,5 +89,13 @@ class EQPanel extends Component {
     );
   }
 }
+
+EQPanel.proptypes = {
+  currentPreset: PropTypes.object,
+  handleGainChange: PropTypes.func,
+  handleFreqChange: PropTypes.func,
+  handleOnOffChange: PropTypes.func,
+  handleEQSwitchChange: PropTypes.func
+};
 
 export default EQPanel;

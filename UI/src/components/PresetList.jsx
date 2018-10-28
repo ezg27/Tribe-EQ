@@ -33,7 +33,6 @@ class PresetList extends Component {
   }
 }
 
-
 PresetList.propTypes = {
   currentPreset: PropTypes.object,
   passCurrentPreset: PropTypes.func
