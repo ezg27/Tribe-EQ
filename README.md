@@ -15,6 +15,7 @@ API URL: https://tribe-eq.herokuapp.com/api
 
 Repo URL: https://github.com/ezg27/Tribe-EQ
 
+<br>
 
 ## Getting started
 
@@ -23,7 +24,7 @@ To install project, navigate to your current Go workspace directory, then run co
 go get -u github.com/ezg27/Tribe-EQ
 ```
 
-### Go Server
+## Go Server
 
 #### Prerequisites
 * Go - version 1.11.1
@@ -58,7 +59,6 @@ go build
 
 <br>
 
-
 ### API endpoints (for local database and Heroku app)
 
 ```http
@@ -92,7 +92,9 @@ DELETE /api/presets/:id
 ```
 Deletes a preset by ID
 
-## Testing
+<br>
+
+### Testing
 
 1. From project root directory, navigate into controllers folder:
 ```
@@ -106,7 +108,7 @@ go test
 
 <br>
 
-### React UI
+## React UI
 
 #### Prerequisites
 * Node - version 10.10.0
@@ -138,7 +140,7 @@ npm install
 npm start
 ```
 
-## Testing
+### Testing
 
 Inside UI folder, run command:
 ```
