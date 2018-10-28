@@ -4,7 +4,7 @@ A full stack implementation of a user interface for the equaliser section of a t
 
 Frontend built with React + hosted on Netlify, corresponding RESTful API built using Go + hosted on Heroku. Database hosted with MongoDB/mLab.
 
-I opted for a typical MVC architecture, allowing for the separation of concerns and ease of testing the controller functions.
+I opted for a typical MVC architecture, allowing for the separation of concerns and ease of unit testing.
 
 I chose to utilise the value ranges (and colour scheme) for gain/frequency controls of a typical SSL 4000-series console. While such boards often utilise variable dials/knobs to control parameters like gain/frequency, I opted for sliders due to greater ease of use in web/screen based applications.
 
@@ -98,7 +98,7 @@ Deletes a preset by ID
 ```
 cd controllers
 ``` 
-2. To run tests, use command:
+2. Make sure mongo is still running in Terminal, then to run tests use the command:
 ```
 go test
 ```
@@ -109,8 +109,8 @@ go test
 ### React UI
 
 #### Prerequisites
-* Node - version 10.6.0
-* Git - version 2.17.1
+* Node - version 10.10.0
+* React - version 16.5.2
 
 #### Dependencies:
 * Material UI - https://material-ui.com/
@@ -118,6 +118,10 @@ go test
 * RC Slider - https://www.npmjs.com/package/rc-slider
 * React-Switch - https://www.npmjs.com/package/react-switch
 * Axios - https://www.npmjs.com/package/axios
+
+#### devDependencies:
+* Jest - https://jestjs.io/
+* Enzyme - https://airbnb.io/enzyme/
 
 <br>
 
@@ -132,4 +136,11 @@ npm install
 3. To start the app, run command:
 ```
 npm start
+```
+
+## Testing
+
+Inside UI folder, run command:
+```
+npm test
 ```
