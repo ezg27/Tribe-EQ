@@ -19,7 +19,7 @@ Repo URL: https://github.com/ezg27/Tribe-EQ
 
 ## Getting started
 
-To install project, navigate to your current Go workspace directory, then run command:
+To install project, navigate to your current Go workspace directory and run command:
 ```
 go get -u github.com/ezg27/Tribe-EQ
 ```
@@ -57,7 +57,6 @@ go build
 ./Tribe-EQ
 ```
 
-<br>
 
 ### API endpoints (for local database and Heroku app)
 
@@ -106,7 +105,7 @@ go test
 ```
 3. To check test descriptions, view messages under each Assertions label in file: ```controllers_test.go``` 
 
-<br>
+
 
 ## React UI
 
