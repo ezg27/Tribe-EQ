@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
 import * as api from '../api';
 import '../css/Controls.css';
 import '../css/PresetList.css';
@@ -180,5 +181,11 @@ class Controls extends Component {
     });
   };
 }
+
+
+Controls.propTypes = {
+  recallPresets: PropTypes.func,
+  currentPreset: PropTypes.object,
+};
 
 export default Controls;
