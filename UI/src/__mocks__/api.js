@@ -112,3 +112,15 @@ export const createPreset = preset => {
     resolve(fakeCreatedPreset);
   });
 };
+
+export const updatePreset = preset => {
+  return new Promise(resolve => {
+    resolve(fakeCreatedPreset);
+  });
+};
+
+export const deletePreset = id => {
+  return new Promise(resolve => {
+    resolve(fakeDeleteMessage);
+  });
+};
