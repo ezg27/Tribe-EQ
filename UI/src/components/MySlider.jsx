@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import PropTypes from 'prop-types';
 import '../css/Bands.css';
 
 class MySlider extends Component {
@@ -40,5 +41,15 @@ class MySlider extends Component {
     );
   }
 }
+
+MySlider.propTypes = {
+  scale: PropTypes.object,
+  trackColor: PropTypes.string,
+  disabled: PropTypes.bool,
+  value: PropTypes.number,
+  handleGainChange: PropTypes.func,
+  handleFreqChange: PropTypes.func,
+  band: PropTypes.string
+};
 
 export default MySlider;
