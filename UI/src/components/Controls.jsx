@@ -182,10 +182,9 @@ class Controls extends Component {
   };
 }
 
-
 Controls.propTypes = {
   recallPresets: PropTypes.func,
-  currentPreset: PropTypes.object,
+  currentPreset: PropTypes.object
 };
 
 export default Controls;
