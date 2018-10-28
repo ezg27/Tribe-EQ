@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MySlider from './MySlider';
 import Switch from 'react-switch';
+import PropTypes from 'prop-types';
 import 'rc-slider/assets/index.css';
 import '../css/Bands.css';
 
@@ -109,5 +110,15 @@ class Band extends Component {
     );
   }
 }
+
+Band.propTypes = {
+  gainDefs: PropTypes.object,
+  freqDefs: PropTypes.object,
+  bandVals: PropTypes.object,
+  handleGainChange: PropTypes.func,
+  handleFreqChange: PropTypes.func,
+  handleOnOffChange: PropTypes.func,
+  handleEQSwitchChange: PropTypes.func
+};
 
 export default Band;
