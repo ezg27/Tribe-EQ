@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import '../css/PresetList.css';
 
 class PresetList extends Component {
-  state = {
-    presets: [],
-    currentPreset: null
-  };
   render() {
     const { currentPreset, passCurrentPreset } = this.props;
     return (
