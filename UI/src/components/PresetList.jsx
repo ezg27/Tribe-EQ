@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import '../css/PresetList.css';
 
 class PresetList extends Component {
@@ -31,5 +32,11 @@ class PresetList extends Component {
     );
   }
 }
+
+
+PresetList.propTypes = {
+  currentPreset: PropTypes.object,
+  passCurrentPreset: PropTypes.func
+};
 
 export default PresetList;
