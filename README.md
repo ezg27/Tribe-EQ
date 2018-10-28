@@ -2,7 +2,7 @@
 
 A full stack implementation of a user interface for the equaliser section of a typical mixing console/plugin. Through interaction with a RESTful API, it allows for the management of settings through viewing, creating, updating and deleting presets.
 
-Frontend built with React + hosted on Netlify, corresponding RESTful API built using Go + hosted on Heroku. Database hosted with MongoDB/mLab.
+Frontend built with React + hosted on Netlify, corresponding RESTful API built with Go using the web framework Echo, and hosted on Heroku. Database hosted with MongoDB/mLab.
 
 I opted for a typical MVC architecture, allowing for the separation of concerns and ease of unit testing.
 
@@ -91,7 +91,6 @@ DELETE /api/presets/:id
 ```
 Deletes a preset by ID
 
-<br>
 
 ### Testing
 
@@ -105,7 +104,7 @@ go test
 ```
 3. To check test descriptions, view messages under each Assertions label in file: ```controllers_test.go``` 
 
-
+<br>
 
 ## React UI
 
