@@ -26,5 +26,11 @@ describe('Create New Preset button', () => {
       .at(1)
       .simulate('click');
     expect(wrapper.state('modalIsOpen')).toEqual(true);
+    wrapper
+      .find('button')
+      .at(1)
+      .simulate('click');
+    expect(wrapper.state('modalIsOpen')).toEqual(true);
+    wrapper.unmount();
   });
 });
