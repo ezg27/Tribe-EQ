@@ -37,6 +37,7 @@ class Interface extends Component {
           <Controls
             recallPresets={this.recallPresets}
             currentPreset={currentPreset}
+            presets={presets}
           />
         </div>
       </div>
