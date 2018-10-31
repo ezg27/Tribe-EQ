@@ -159,26 +159,37 @@ class Controls extends Component {
   };
 
   handleDelete = () => {
-    const { currentPreset, recallPresets } = this.props;
-    api.deletePreset(currentPreset.id).then(response => {
-      if (response.type === 'error') {
-        response.message = 'Error: Preset name already exists!';
-        this.setState({
-          err: response
-        });
-      } else {
-        recallPresets();
-        this.setState({
-          presetAction: true,
-          modalMessage: response.message
-        });
-        setTimeout(() => {
+    const { currentPreset, recallPresets, presets } = this.props;
+    if (presets.length === 1) {
+      this.setState({
+        presetAction: true,
+        modalMessage: `Cannot delete last preset!`
+      });
+      setTimeout(() => {
+        this.setState({ presetAction: false });
+      }, 2000);
+      recallPresets();
+    } else {
+      api.deletePreset(currentPreset.id).then(response => {
+        if (response.type === 'error') {
+          response.message = 'Error: Preset name already exists!';
           this.setState({
-            presetAction: false
+            err: response
           });
-        }, 2000);
-      }
-    });
+        } else {
+          recallPresets();
+          this.setState({
+            presetAction: true,
+            modalMessage: response.message
+          });
+          setTimeout(() => {
+            this.setState({
+              presetAction: false
+            });
+          }, 2000);
+        }
+      });
+    }
   };
 }
 
